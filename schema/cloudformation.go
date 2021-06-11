@@ -12809,6 +12809,9 @@ var CloudformationSchema = `{
                         "CapacityRebalance": {
                             "type": "boolean"
                         },
+                        "Context": {
+                            "type": "string"
+                        },
                         "Cooldown": {
                             "type": "string"
                         },
@@ -33955,6 +33958,9 @@ var CloudformationSchema = `{
                         "AllocationId": {
                             "type": "string"
                         },
+                        "ConnectivityType": {
+                            "type": "string"
+                        },
                         "SubnetId": {
                             "type": "string"
                         },
@@ -33966,7 +33972,6 @@ var CloudformationSchema = `{
                         }
                     },
                     "required": [
-                        "AllocationId",
                         "SubnetId"
                     ],
                     "type": "object"
@@ -70079,9 +70084,6 @@ var CloudformationSchema = `{
                         "Handler": {
                             "type": "string"
                         },
-                        "Id": {
-                            "type": "string"
-                        },
                         "ImageConfig": {
                             "$ref": "#/definitions/AWS::Lambda::Function.ImageConfig"
                         },
@@ -70293,12 +70295,6 @@ var CloudformationSchema = `{
                 "Properties": {
                     "additionalProperties": false,
                     "properties": {
-                        "CompatibleArchitectures": {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
                         "CompatibleRuntimes": {
                             "items": {
                                 "type": "string"
@@ -87290,6 +87286,12 @@ var CloudformationSchema = `{
                         "Name": {
                             "type": "string"
                         },
+                        "PermissionArns": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
                         "Principals": {
                             "items": {
                                 "type": "string"
@@ -94532,11 +94534,17 @@ var CloudformationSchema = `{
                         "ContentBasedDeduplication": {
                             "type": "boolean"
                         },
+                        "DeduplicationScope": {
+                            "type": "string"
+                        },
                         "DelaySeconds": {
                             "type": "number"
                         },
                         "FifoQueue": {
                             "type": "boolean"
+                        },
+                        "FifoThroughputLimit": {
+                            "type": "string"
                         },
                         "KmsDataKeyReusePeriodSeconds": {
                             "type": "number"
@@ -95915,6 +95923,38 @@ var CloudformationSchema = `{
             ],
             "type": "object"
         },
+        "AWS::SSMContacts::Contact.ChannelTargetInfo": {
+            "additionalProperties": false,
+            "properties": {
+                "ChannelId": {
+                    "type": "string"
+                },
+                "RetryIntervalInMinutes": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "ChannelId",
+                "RetryIntervalInMinutes"
+            ],
+            "type": "object"
+        },
+        "AWS::SSMContacts::Contact.ContactTargetInfo": {
+            "additionalProperties": false,
+            "properties": {
+                "ContactId": {
+                    "type": "string"
+                },
+                "IsEssential": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "ContactId",
+                "IsEssential"
+            ],
+            "type": "object"
+        },
         "AWS::SSMContacts::Contact.Stage": {
             "additionalProperties": false,
             "properties": {
@@ -95937,10 +95977,10 @@ var CloudformationSchema = `{
             "additionalProperties": false,
             "properties": {
                 "ChannelTargetInfo": {
-                    "type": "object"
+                    "$ref": "#/definitions/AWS::SSMContacts::Contact.ChannelTargetInfo"
                 },
                 "ContactTargetInfo": {
-                    "type": "object"
+                    "$ref": "#/definitions/AWS::SSMContacts::Contact.ContactTargetInfo"
                 }
             },
             "type": "object"
@@ -96834,6 +96874,12 @@ var CloudformationSchema = `{
                         },
                         "GitConfig": {
                             "$ref": "#/definitions/AWS::SageMaker::CodeRepository.GitConfig"
+                        },
+                        "Tags": {
+                            "items": {
+                                "$ref": "#/definitions/Tag"
+                            },
+                            "type": "array"
                         }
                     },
                     "required": [

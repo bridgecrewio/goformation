@@ -11,12 +11,12 @@ type Contact_Targets struct {
 	// ChannelTargetInfo AWS CloudFormation Property
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-contact-targets.html#cfn-ssmcontacts-contact-targets-channeltargetinfo
-	ChannelTargetInfo interface{} `json:"ChannelTargetInfo,omitempty"`
+	ChannelTargetInfo *Contact_ChannelTargetInfo `json:"ChannelTargetInfo,omitempty"`
 
 	// ContactTargetInfo AWS CloudFormation Property
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-contact-targets.html#cfn-ssmcontacts-contact-targets-contacttargetinfo
-	ContactTargetInfo interface{} `json:"ContactTargetInfo,omitempty"`
+	ContactTargetInfo *Contact_ContactTargetInfo `json:"ContactTargetInfo,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
