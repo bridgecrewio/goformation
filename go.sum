@@ -1,3 +1,5 @@
+github.com/bridgecrewio/goformation/v4 v4.19.5 h1:9ZvznbJuDsd0Th/CnIjFGF6weMWeuO3IRm+RDjZDPts=
+github.com/bridgecrewio/goformation/v4 v4.19.5/go.mod h1:JoNpnVCBOUtEz9bFxc9sjy8uBUCLF5c4D1L7RhRTVM8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

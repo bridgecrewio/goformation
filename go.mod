@@ -1,6 +1,7 @@
 module github.com/bridgecrewio/goformation/v4
 
 require (
+	github.com/awslabs/goformation/v4 v4.0.0-00010101000000-000000000000
 	github.com/imdario/mergo v0.3.12
 	github.com/onsi/ginkgo v1.16.2
 	github.com/onsi/gomega v1.12.0
@@ -11,5 +12,7 @@ require (
 	github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 // indirect
 	github.com/xeipuuv/gojsonschema v0.0.0-20181112162635-ac52e6811b56
 )
+
+replace github.com/awslabs/goformation/v4 => github.com/bridgecrewio/goformation/v4 v4.19.5
 
 go 1.13
