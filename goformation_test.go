@@ -1320,6 +1320,22 @@ func TestStringifyInnerValues(t *testing.T) {
 			},
 		},
 		{
+			name: "key not found",
+			args: args{
+				iMapData: map[string]interface{}{
+					"Variables": map[string]interface{}{
+						"IntVar": 10,
+					},
+				},
+				keyPath: []string{"NonExisting", "*"},
+			},
+			want: map[string]interface{}{
+				"Variables": map[string]interface{}{
+					"IntVar": 10,
+				},
+			},
+		},
+		{
 			name: "full resources",
 			args: args{
 				iMapData: map[string]interface{}{
@@ -1329,6 +1345,7 @@ func TestStringifyInnerValues(t *testing.T) {
 								"Environment": map[string]interface{}{
 									"Variables": map[string]interface{}{
 										"IntVar": 10,
+										"ArrVar": []string{"a", "b", "c"},
 									},
 								},
 							},
@@ -1344,6 +1361,7 @@ func TestStringifyInnerValues(t *testing.T) {
 							"Environment": map[string]interface{}{
 								"Variables": map[string]interface{}{
 									"IntVar": "10",
+									"ArrVar": "[a b c]",
 								},
 							},
 						},

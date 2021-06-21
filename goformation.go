@@ -55,9 +55,9 @@ func StringifyInnerValues(iMapData interface{}, keyPath []string) interface{} {
 	if currProperty != "*" {
 		innerMap, ok := mapData[currProperty]
 		if !ok {
-			return innerMap
+			return mapData
 		}
-		mapData[currProperty] = StringifyInnerValues(mapData[currProperty], keyPath[1:])
+		mapData[currProperty] = StringifyInnerValues(innerMap, keyPath[1:])
 	} else {
 		for key, val := range mapData {
 			mapData[key] = StringifyInnerValues(val, keyPath[1:])
@@ -87,7 +87,7 @@ func StringifyValues(data []byte, keyPaths []string) ([]byte, error) {
 		}
 	}
 
-	updatedData, err := yaml.Marshal(mapData)
+	updatedData, err := yaml.Marshal(&mapData)
 
 	return updatedData, err
 }
