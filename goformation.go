@@ -41,33 +41,50 @@ func ParseYAML(data []byte) (*cloudformation.Template, error) {
 	return ParseYAMLWithOptions(data, nil)
 }
 
-func StringifyInnerValues(iMapData interface{}, keyPath []string) interface{} {
+// StringifyInnerYAMLValues converts values in YAML to string, for a keyPath stated.
+// keyPath should look like []string{"Resources", "*", "Properties", "Environment", "Variables", "*"}
+func StringifyInnerYAMLValues(iMapData interface{}, keyPath []string) interface{} {
 	if len(keyPath) == 0 {
 		return fmt.Sprintf("%v", iMapData)
 	}
 
-	mapData, ok := iMapData.(map[string]interface{})
-	if !ok {
-		return iMapData
-	}
+	mapData, isMap := iMapData.(map[string]interface{})
 
 	currProperty := keyPath[0]
-	if currProperty != "*" {
-		innerMap, ok := mapData[currProperty]
-		if !ok {
+
+	if currProperty == "*" {
+		if isMap {
+			for key, val := range mapData {
+				mapData[key] = StringifyInnerYAMLValues(val, keyPath[1:])
+			}
 			return mapData
 		}
-		mapData[currProperty] = StringifyInnerValues(innerMap, keyPath[1:])
-	} else {
-		for key, val := range mapData {
-			mapData[key] = StringifyInnerValues(val, keyPath[1:])
+
+		sliceData, isSlice := iMapData.([]interface{})
+		if !isSlice {
+			return iMapData
 		}
+		for i, val := range sliceData {
+			sliceData[i] = StringifyInnerYAMLValues(val, keyPath[1:])
+		}
+		return sliceData
+	}
+
+	// if the current property is not '*', i.e a named property
+	if !isMap {
+		return iMapData
+	}
+	innerMap, propertyFound := mapData[currProperty]
+	if propertyFound {
+		mapData[currProperty] = StringifyInnerYAMLValues(innerMap, keyPath[1:])
 	}
 
 	return mapData
 }
 
-func StringifyValues(data []byte, keyPaths []string) ([]byte, error) {
+// StringifyYAMLValues converts values in YAML to string, for all keyPaths stated.
+// keyPaths should look like []string{"Resources/*/Properties/Environment/Variables/*"}
+func StringifyYAMLValues(data []byte, keyPaths []string) ([]byte, error) {
 	var structData interface{}
 	err := yaml.Unmarshal(data, &structData)
 	if err != nil {
@@ -80,7 +97,7 @@ func StringifyValues(data []byte, keyPaths []string) ([]byte, error) {
 	}
 
 	for _, keyPath := range keyPaths {
-		iMapData := StringifyInnerValues(mapData, strings.Split(keyPath, "/"))
+		iMapData := StringifyInnerYAMLValues(mapData, strings.Split(keyPath, "/"))
 		mapData, ok = iMapData.(map[string]interface{})
 		if !ok {
 			return nil, fmt.Errorf("failed to stringify paths in YAML")
@@ -97,7 +114,7 @@ func StringifyValues(data []byte, keyPaths []string) ([]byte, error) {
 func ParseYAMLWithOptions(data []byte, options *intrinsics.ProcessorOptions) (*cloudformation.Template, error) {
 	var err error
 	if options != nil && len(options.StringifyPaths) > 0 {
-		data, err = StringifyValues(data, options.StringifyPaths)
+		data, err = StringifyYAMLValues(data, options.StringifyPaths)
 		if err != nil {
 			return nil, err
 		}

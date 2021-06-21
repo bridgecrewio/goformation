@@ -1319,9 +1319,33 @@ var _ = Describe("Goformation", func() {
 		})
 
 	})
+
+	Context("with a YAML template that contains AWS::EC2::SecurityGroup with non-string SecurityGroupIngress/FromPort", func() {
+
+		template, err := goformation.OpenWithOptions("test/yaml/ec2-instance.yaml",
+			&intrinsics.ProcessorOptions{
+				StringifyPaths: []string{"Resources/*/Properties/SecurityGroupIngress/*/CidrIp"},
+			})
+
+		It("should parse the template successfully", func() {
+			Expect(template).ToNot(BeNil())
+			Expect(err).To(BeNil())
+		})
+
+		ingressResources := template.GetAllEC2SecurityGroupResources()
+
+		It("should equal '0'", func() {
+			Expect(ingressResources["InstanceSecurityGroup"].SecurityGroupIngress[0].CidrIp).To(Equal("0"))
+		})
+
+		It("should equal '1'", func() {
+			Expect(ingressResources["InstanceSecurityGroup"].SecurityGroupIngress[1].CidrIp).To(Equal("1"))
+		})
+
+	})
 })
 
-func TestStringifyInnerValues(t *testing.T) {
+func TestStringifyInnerYAMLValues(t *testing.T) {
 	type args struct {
 		iMapData interface{}
 		keyPath  []string
@@ -1400,9 +1424,9 @@ func TestStringifyInnerValues(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := goformation.StringifyInnerValues(tt.args.iMapData, tt.args.keyPath)
+			got := goformation.StringifyInnerYAMLValues(tt.args.iMapData, tt.args.keyPath)
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("StringifyInnerValues() = %v, want %v", got, tt.want)
+				t.Errorf("StringifyInnerYAMLValues() = %v, want %v", got, tt.want)
 			}
 		})
 	}
