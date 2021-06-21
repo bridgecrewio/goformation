@@ -13,6 +13,6 @@ require (
 	github.com/xeipuuv/gojsonschema v0.0.0-20181112162635-ac52e6811b56
 )
 
-replace github.com/awslabs/goformation/v4 => github.com/bridgecrewio/goformation/v4 v4.19.6-0.20210621091343-261f8cce05ec
+replace github.com/awslabs/goformation/v4 => github.com/bridgecrewio/goformation/v4 master
 
 go 1.13
