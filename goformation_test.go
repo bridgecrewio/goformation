@@ -1291,6 +1291,34 @@ var _ = Describe("Goformation", func() {
 			})
 		})
 	})
+
+	Context("with a YAML template that contains AWS::Lambda::Function with non-string environment variables", func() {
+
+		template, err := goformation.OpenWithOptions("test/yaml/env-variables.yaml",
+			&intrinsics.ProcessorOptions{
+				StringifyPaths: []string{"Resources/*/Properties/Environment/Variables/*"},
+			})
+
+		It("should parse the template successfully", func() {
+			Expect(template).ToNot(BeNil())
+			Expect(err).To(BeNil())
+		})
+
+		lambdas := template.GetAllLambdaFunctionResources()
+
+		It("should have an environment variable with find string", func() {
+			Expect(lambdas["ExampleFindInMap"].Environment.Variables).To(HaveKeyWithValue("FindInMapVar", "map[Fn::FindInMap:[Mappings MyMap Key]]"))
+		})
+
+		It("should have an environment variable with int string", func() {
+			Expect(lambdas["ExampleInt"].Environment.Variables).To(HaveKeyWithValue("IntVar", "1"))
+		})
+
+		It("should have an environment variable with join string", func() {
+			Expect(lambdas["ExampleJoin"].Environment.Variables).To(HaveKeyWithValue("JoinVar", "map[Fn::Join:[- [a b c]]]"))
+		})
+
+	})
 })
 
 func TestStringifyInnerValues(t *testing.T) {
