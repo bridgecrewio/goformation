@@ -2,12 +2,14 @@ package goformation_test
 
 import (
 	"fmt"
+	"github.com/bridgecrewio/goformation/v4"
+	"reflect"
+	"testing"
 
 	"encoding/json"
 
 	"github.com/sanathkr/yaml"
 
-	"github.com/awslabs/goformation/v4"
 	"github.com/awslabs/goformation/v4/cloudformation"
 	"github.com/awslabs/goformation/v4/cloudformation/ec2"
 	"github.com/awslabs/goformation/v4/cloudformation/lambda"
@@ -16,7 +18,7 @@ import (
 	"github.com/awslabs/goformation/v4/cloudformation/s3"
 	"github.com/awslabs/goformation/v4/cloudformation/serverless"
 	"github.com/awslabs/goformation/v4/cloudformation/sns"
-	"github.com/awslabs/goformation/v4/intrinsics"
+	"github.com/bridgecrewio/goformation/v4/intrinsics"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -1290,3 +1292,72 @@ var _ = Describe("Goformation", func() {
 		})
 	})
 })
+
+func TestStringifyInnerValues(t *testing.T) {
+	type args struct {
+		iMapData interface{}
+		keyPath  []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want interface{}
+	}{
+		{
+			name: "vars",
+			args: args{
+				iMapData: map[string]interface{}{
+					"Variables": map[string]interface{}{
+						"IntVar": 10,
+					},
+				},
+				keyPath: []string{"Variables", "*"},
+			},
+			want: map[string]interface{}{
+				"Variables": map[string]interface{}{
+					"IntVar": "10",
+				},
+			},
+		},
+		{
+			name: "full resources",
+			args: args{
+				iMapData: map[string]interface{}{
+					"Resources": map[string]interface{}{
+						"resource1": map[string]interface{}{
+							"Properties": map[string]interface{}{
+								"Environment": map[string]interface{}{
+									"Variables": map[string]interface{}{
+										"IntVar": 10,
+									},
+								},
+							},
+						},
+					},
+				},
+				keyPath: []string{"Resources", "*", "Properties", "Environment", "Variables", "*"},
+			},
+			want: map[string]interface{}{
+				"Resources": map[string]interface{}{
+					"resource1": map[string]interface{}{
+						"Properties": map[string]interface{}{
+							"Environment": map[string]interface{}{
+								"Variables": map[string]interface{}{
+									"IntVar": "10",
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := goformation.StringifyInnerValues(tt.args.iMapData, tt.args.keyPath)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("StringifyInnerValues() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

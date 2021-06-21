@@ -47,6 +47,7 @@ type ProcessorOptions struct {
 	NoProcess                 bool
 	ProcessOnlyGlobals        bool
 	EvaluateConditions        bool
+	StringifyPaths            []string
 }
 
 // nonResolvingHandler is a simple example of an intrinsic function handler function
