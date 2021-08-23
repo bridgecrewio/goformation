@@ -40,11 +40,15 @@ var defaultIntrinsicHandlers = map[string]IntrinsicHandler{
 // This allows disabling the processing of intrinsics,
 // overriding of the handlers for each intrinsic function type,
 // and overriding template parameters.
+// StringifyPaths are elements paths in YAML templates that allow converting their values to string.
+// For example: "Resources/*/Properties/Environment/Variables/*" will stringify all environment variables for all resources in template.
+// The '*' char indicates to perform the operation for all nested elements.
 type ProcessorOptions struct {
 	IntrinsicHandlerOverrides map[string]IntrinsicHandler
 	ParameterOverrides        map[string]interface{}
 	NoProcess                 bool
 	EvaluateConditions        bool
+	StringifyPaths            []string
 }
 
 // nonResolvingHandler is a simple example of an intrinsic function handler function

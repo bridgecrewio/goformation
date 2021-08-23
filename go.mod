@@ -1,4 +1,4 @@
-module github.com/awslabs/goformation/v5
+module github.com/bridgecrewio/goformation/v5
 
 require (
 	github.com/awslabs/goformation/v4 v4.19.5
@@ -9,5 +9,7 @@ require (
 	github.com/sanathkr/yaml v0.0.0-20170819201035-0056894fa522
 	github.com/xeipuuv/gojsonschema v0.0.0-20181112162635-ac52e6811b56
 )
+
+replace github.com/awslabs/goformation/v5 => github.com/bridgecrewio/goformation/v5 master
 
 go 1.13

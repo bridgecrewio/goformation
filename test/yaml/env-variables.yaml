@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Non-string environment variables
+Mappings:
+  MyMap:
+    Key: "Value"
+Resources:
+  ExampleFindInMap:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: An example template
+      Environment:
+        Variables:
+          FindInMapVar: !FindInMap [ Mappings, MyMap, Key ]
+  ExampleInt:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: An example template
+      Environment:
+        Variables:
+          IntVar: 1
+  ExampleJoin:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: An example template
+      Environment:
+        Variables:
+          JoinVar: !Join [ '-', [ 'a', 'b', 'c' ] ]

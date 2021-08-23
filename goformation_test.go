@@ -1,8 +1,12 @@
 package goformation_test
 
 import (
-	"encoding/json"
 	"fmt"
+	"github.com/bridgecrewio/goformation/v5"
+	"reflect"
+	"testing"
+
+	"encoding/json"
 
 	"github.com/sanathkr/yaml"
 
@@ -1411,4 +1415,143 @@ var _ = Describe("Goformation", func() {
 			})
 		})
 	})
+
+	Context("with a YAML template that contains AWS::Lambda::Function with non-string environment variables", func() {
+
+		template, err := goformation.OpenWithOptions("test/yaml/env-variables.yaml",
+			&intrinsics.ProcessorOptions{
+				StringifyPaths: []string{"Resources/*/Properties/Environment/Variables/*"},
+			})
+
+		It("should parse the template successfully", func() {
+			Expect(template).ToNot(BeNil())
+			Expect(err).To(BeNil())
+		})
+
+		lambdas := template.GetAllLambdaFunctionResources()
+
+		It("should have an environment variable with find string", func() {
+			Expect(lambdas["ExampleFindInMap"].Environment.Variables).To(HaveKeyWithValue("FindInMapVar", "map[Fn::FindInMap:[Mappings MyMap Key]]"))
+		})
+
+		It("should have an environment variable with int string", func() {
+			Expect(lambdas["ExampleInt"].Environment.Variables).To(HaveKeyWithValue("IntVar", "1"))
+		})
+
+		It("should have an environment variable with join string", func() {
+			Expect(lambdas["ExampleJoin"].Environment.Variables).To(HaveKeyWithValue("JoinVar", "map[Fn::Join:[- [a b c]]]"))
+		})
+
+	})
+
+	Context("with a YAML template that contains AWS::EC2::SecurityGroup with non-string SecurityGroupIngress/FromPort", func() {
+
+		template, err := goformation.OpenWithOptions("test/yaml/ec2-instance.yaml",
+			&intrinsics.ProcessorOptions{
+				StringifyPaths: []string{"Resources/*/Properties/SecurityGroupIngress/*/CidrIp"},
+			})
+
+		It("should parse the template successfully", func() {
+			Expect(template).ToNot(BeNil())
+			Expect(err).To(BeNil())
+		})
+
+		ingressResources := template.GetAllEC2SecurityGroupResources()
+
+		It("should equal '0'", func() {
+			Expect(ingressResources["InstanceSecurityGroup"].SecurityGroupIngress[0].CidrIp).To(Equal("0"))
+		})
+
+		It("should equal '1'", func() {
+			Expect(ingressResources["InstanceSecurityGroup"].SecurityGroupIngress[1].CidrIp).To(Equal("1"))
+		})
+
+	})
 })
+
+func TestStringifyInnerYAMLValues(t *testing.T) {
+	type args struct {
+		iMapData interface{}
+		keyPath  []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want interface{}
+	}{
+		{
+			name: "vars",
+			args: args{
+				iMapData: map[string]interface{}{
+					"Variables": map[string]interface{}{
+						"IntVar": 10,
+					},
+				},
+				keyPath: []string{"Variables", "*"},
+			},
+			want: map[string]interface{}{
+				"Variables": map[string]interface{}{
+					"IntVar": "10",
+				},
+			},
+		},
+		{
+			name: "key not found",
+			args: args{
+				iMapData: map[string]interface{}{
+					"Variables": map[string]interface{}{
+						"IntVar": 10,
+					},
+				},
+				keyPath: []string{"NonExisting", "*"},
+			},
+			want: map[string]interface{}{
+				"Variables": map[string]interface{}{
+					"IntVar": 10,
+				},
+			},
+		},
+		{
+			name: "full resources",
+			args: args{
+				iMapData: map[string]interface{}{
+					"Resources": map[string]interface{}{
+						"resource1": map[string]interface{}{
+							"Properties": map[string]interface{}{
+								"Environment": map[string]interface{}{
+									"Variables": map[string]interface{}{
+										"IntVar": 10,
+										"ArrVar": []string{"a", "b", "c"},
+									},
+								},
+							},
+						},
+					},
+				},
+				keyPath: []string{"Resources", "*", "Properties", "Environment", "Variables", "*"},
+			},
+			want: map[string]interface{}{
+				"Resources": map[string]interface{}{
+					"resource1": map[string]interface{}{
+						"Properties": map[string]interface{}{
+							"Environment": map[string]interface{}{
+								"Variables": map[string]interface{}{
+									"IntVar": "10",
+									"ArrVar": "[a b c]",
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := goformation.StringifyInnerYAMLValues(tt.args.iMapData, tt.args.keyPath)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("StringifyInnerYAMLValues() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
