@@ -3,9 +3,10 @@ package goformation
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/sanathkr/yaml"
 	"io/ioutil"
 	"strings"
+
+	"github.com/sanathkr/yaml"
 
 	"github.com/awslabs/goformation/v5/cloudformation"
 	"github.com/awslabs/goformation/v5/intrinsics"
@@ -35,11 +36,6 @@ func OpenWithOptions(filename string, options *intrinsics.ProcessorOptions) (*cl
 	}
 
 	return ParseYAMLWithOptions(data, options)
-}
-
-// ParseYAML an AWS CloudFormation template (expects a []byte of valid YAML)
-func ParseYAML(data []byte) (*cloudformation.Template, error) {
-	return ParseYAMLWithOptions(data, nil)
 }
 
 // StringifyInnerYAMLValues converts values in YAML to string, for a keyPath stated.
