@@ -8,8 +8,8 @@ import (
 
 	"github.com/sanathkr/yaml"
 
-	"github.com/awslabs/goformation/v5/cloudformation"
-	"github.com/awslabs/goformation/v5/intrinsics"
+	"github.com/bridgecrewio/goformation/v5/cloudformation"
+	"github.com/bridgecrewio/goformation/v5/intrinsics"
 )
 
 //go:generate generate/generate.sh
