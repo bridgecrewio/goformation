@@ -1,7 +1,7 @@
 package wafv2
 
 import (
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // WebACL_SizeConstraintStatement AWS CloudFormation Resource (AWS::WAFv2::WebACL.SizeConstraintStatement)
@@ -21,7 +21,7 @@ type WebACL_SizeConstraintStatement struct {
 	// Size AWS CloudFormation Property
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-sizeconstraintstatement.html#cfn-wafv2-webacl-sizeconstraintstatement-size
-	Size int `json:"Size"`
+	Size float64 `json:"Size"`
 
 	// TextTransformations AWS CloudFormation Property
 	// Required: true

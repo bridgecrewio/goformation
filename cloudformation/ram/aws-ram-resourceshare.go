@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
-	"github.com/awslabs/goformation/v4/cloudformation/tags"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/tags"
 )
 
 // ResourceShare AWS CloudFormation Resource (AWS::RAM::ResourceShare)
@@ -22,6 +22,11 @@ type ResourceShare struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ram-resourceshare.html#cfn-ram-resourceshare-name
 	Name string `json:"Name,omitempty"`
+
+	// PermissionArns AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ram-resourceshare.html#cfn-ram-resourceshare-permissionarns
+	PermissionArns []string `json:"PermissionArns,omitempty"`
 
 	// Principals AWS CloudFormation Property
 	// Required: false

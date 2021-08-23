@@ -1,7 +1,7 @@
 package fsx
 
 import (
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // FileSystem_WindowsConfiguration AWS CloudFormation Resource (AWS::FSx::FileSystem.WindowsConfiguration)
@@ -17,6 +17,11 @@ type FileSystem_WindowsConfiguration struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-windowsconfiguration.html#cfn-fsx-filesystem-windowsconfiguration-aliases
 	Aliases []string `json:"Aliases,omitempty"`
+
+	// AuditLogConfiguration AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-windowsconfiguration.html#cfn-fsx-filesystem-windowsconfiguration-auditlogconfiguration
+	AuditLogConfiguration *FileSystem_AuditLogConfiguration `json:"AuditLogConfiguration,omitempty"`
 
 	// AutomaticBackupRetentionDays AWS CloudFormation Property
 	// Required: false

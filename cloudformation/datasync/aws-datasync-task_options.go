@@ -1,7 +1,7 @@
 package datasync
 
 import (
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // Task_Options AWS CloudFormation Resource (AWS::DataSync::Task.Options)
@@ -52,6 +52,11 @@ type Task_Options struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-options.html#cfn-datasync-task-options-preservedevices
 	PreserveDevices string `json:"PreserveDevices,omitempty"`
+
+	// SecurityDescriptorCopyFlags AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-options.html#cfn-datasync-task-options-securitydescriptorcopyflags
+	SecurityDescriptorCopyFlags string `json:"SecurityDescriptorCopyFlags,omitempty"`
 
 	// TaskQueueing AWS CloudFormation Property
 	// Required: false

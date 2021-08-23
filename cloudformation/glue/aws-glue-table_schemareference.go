@@ -1,22 +1,22 @@
 package glue
 
 import (
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // Table_SchemaReference AWS CloudFormation Resource (AWS::Glue::Table.SchemaReference)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemareference.html
 type Table_SchemaReference struct {
 
-	// SchameVersionId AWS CloudFormation Property
-	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemareference.html#cfn-glue-table-schemareference-schameversionid
-	SchameVersionId string `json:"SchameVersionId,omitempty"`
-
 	// SchemaId AWS CloudFormation Property
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemareference.html#cfn-glue-table-schemareference-schemaid
 	SchemaId *Table_SchemaId `json:"SchemaId,omitempty"`
+
+	// SchemaVersionId AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemareference.html#cfn-glue-table-schemareference-schemaversionid
+	SchemaVersionId string `json:"SchemaVersionId,omitempty"`
 
 	// SchemaVersionNumber AWS CloudFormation Property
 	// Required: false

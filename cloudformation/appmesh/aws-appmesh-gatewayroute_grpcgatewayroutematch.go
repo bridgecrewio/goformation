@@ -1,12 +1,22 @@
 package appmesh
 
 import (
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // GatewayRoute_GrpcGatewayRouteMatch AWS CloudFormation Resource (AWS::AppMesh::GatewayRoute.GrpcGatewayRouteMatch)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayroutematch.html
 type GatewayRoute_GrpcGatewayRouteMatch struct {
+
+	// Hostname AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayroutematch.html#cfn-appmesh-gatewayroute-grpcgatewayroutematch-hostname
+	Hostname *GatewayRoute_GatewayRouteHostnameMatch `json:"Hostname,omitempty"`
+
+	// Metadata AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayroutematch.html#cfn-appmesh-gatewayroute-grpcgatewayroutematch-metadata
+	Metadata []GatewayRoute_GrpcGatewayRouteMetadata `json:"Metadata,omitempty"`
 
 	// ServiceName AWS CloudFormation Property
 	// Required: false

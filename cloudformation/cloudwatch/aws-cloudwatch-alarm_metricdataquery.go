@@ -1,12 +1,17 @@
 package cloudwatch
 
 import (
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // Alarm_MetricDataQuery AWS CloudFormation Resource (AWS::CloudWatch::Alarm.MetricDataQuery)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-metricdataquery.html
 type Alarm_MetricDataQuery struct {
+
+	// AccountId AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-metricdataquery.html#cfn-cloudwatch-alarm-metricdataquery-accountid
+	AccountId string `json:"AccountId,omitempty"`
 
 	// Expression AWS CloudFormation Property
 	// Required: false

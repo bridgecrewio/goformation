@@ -2,7 +2,7 @@ package goformation_test
 
 import (
 	"fmt"
-	"github.com/bridgecrewio/goformation/v4"
+	"github.com/bridgecrewio/goformation/v5"
 	"reflect"
 	"testing"
 
@@ -10,15 +10,17 @@ import (
 
 	"github.com/sanathkr/yaml"
 
-	"github.com/awslabs/goformation/v4/cloudformation"
-	"github.com/awslabs/goformation/v4/cloudformation/ec2"
-	"github.com/awslabs/goformation/v4/cloudformation/lambda"
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
-	"github.com/awslabs/goformation/v4/cloudformation/route53"
-	"github.com/awslabs/goformation/v4/cloudformation/s3"
-	"github.com/awslabs/goformation/v4/cloudformation/serverless"
-	"github.com/awslabs/goformation/v4/cloudformation/sns"
-	"github.com/bridgecrewio/goformation/v4/intrinsics"
+	"github.com/awslabs/goformation/v5"
+	"github.com/awslabs/goformation/v5/cloudformation"
+	"github.com/awslabs/goformation/v5/cloudformation/ec2"
+	"github.com/awslabs/goformation/v5/cloudformation/global"
+	"github.com/awslabs/goformation/v5/cloudformation/lambda"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/route53"
+	"github.com/awslabs/goformation/v5/cloudformation/s3"
+	"github.com/awslabs/goformation/v5/cloudformation/serverless"
+	"github.com/awslabs/goformation/v5/cloudformation/sns"
+	"github.com/awslabs/goformation/v5/intrinsics"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -754,6 +756,31 @@ var _ = Describe("Goformation", func() {
 
 	})
 
+	Context("with a default SAM CLI-created YAML template", func() {
+		template, err := goformation.Open("test/yaml/aws-serverless-sam-cli-default.yaml")
+
+		It("should parse the template successfully", func() {
+			Expect(template).ToNot(BeNil())
+			Expect(err).To(BeNil())
+		})
+
+		global, err := template.GetServerlessGlobalFunction()
+		It("should have a Global Function definition containing a timeout", func() {
+			Expect(global.Timeout).To(Equal(5))
+			Expect(err).To(BeNil())
+		})
+
+		function, err := template.GetServerlessFunctionWithName("HelloWorldFunction")
+		It("should have an AWS::Serverless::Function called HelloWorldFunction", func() {
+			Expect(function).ToNot(BeNil())
+			Expect(err).To(BeNil())
+		})
+
+		It("should have the correct CodeUri", func() {
+			Expect(function.CodeUri.String).To(PointTo(Equal("hello-world/")))
+		})
+	})
+
 	Context("with a YAML template with single transform macro", func() {
 		template, err := goformation.Open("test/yaml/transform-single.yaml")
 
@@ -790,7 +817,7 @@ var _ = Describe("Goformation", func() {
 
 	})
 
-	Context("with a YAML template with paramter overrides", func() {
+	Context("with a YAML template with parameter overrides", func() {
 
 		template, err := goformation.OpenWithOptions("test/yaml/aws-serverless-function-env-vars.yaml", &intrinsics.ProcessorOptions{
 			ParameterOverrides: map[string]interface{}{"ExampleParameter": "SomeNewValue"},
@@ -836,6 +863,47 @@ var _ = Describe("Goformation", func() {
 			bytes, err := event.MarshalJSON()
 			Expect(err).To(BeNil())
 			Expect(string(bytes)).To(Equal(eventString))
+		})
+	})
+
+	Context("with an API event source", func() {
+		event := serverless.Function_Properties{
+			ApiEvent: &serverless.Function_ApiEvent{
+				Auth: &serverless.Function_Auth{
+					ApiKeyRequired:      true,
+					AuthorizationScopes: []string{"scope1", "scope2"},
+					Authorizer:          "aws_iam",
+					ResourcePolicy: &serverless.Function_AuthResourcePolicy{
+						CustomStatements: []interface{}{
+							map[string]interface{}{
+								"Effect":   "Allow",
+								"Action":   "execute-api:*",
+								"Resource": "*",
+							},
+						},
+						AwsAccountBlacklist:    []string{"AwsAccountBlacklistValue"},
+						AwsAccountWhitelist:    []string{"AwsAccountWhitelistValue"},
+						IntrinsicVpcBlacklist:  []string{"IntrinsicVpcBlacklistValue"},
+						IntrinsicVpcWhitelist:  []string{"IntrinsicVpcWhitelistValue"},
+						IntrinsicVpceBlacklist: []string{"IntrinsicVpceBlacklistValue"},
+						IntrinsicVpceWhitelist: []string{"IntrinsicVpceWhitelistValue"},
+						IpRangeBlacklist:       []string{"IpRangeBlacklistValue"},
+						IpRangeWhitelist:       []string{"IpRangeWhitelistValue"},
+						SourceVpcBlacklist:     []string{"SourceVpcBlacklistValue"},
+						SourceVpcWhitelist:     []string{"SourceVpcWhitelistValue"},
+					},
+				},
+				Method:    "MethodValue",
+				Path:      "PathValue",
+				RestApiId: "RestApiIdValue",
+			},
+		}
+
+		It("should marshal properties correctly", func() {
+			expectedString := `{"Auth":{"ApiKeyRequired":true,"AuthorizationScopes":["scope1","scope2"],"Authorizer":"aws_iam","ResourcePolicy":{"AwsAccountBlacklist":["AwsAccountBlacklistValue"],"AwsAccountWhitelist":["AwsAccountWhitelistValue"],"CustomStatements":[{"Action":"execute-api:*","Effect":"Allow","Resource":"*"}],"IntrinsicVpcBlacklist":["IntrinsicVpcBlacklistValue"],"IntrinsicVpcWhitelist":["IntrinsicVpcWhitelistValue"],"IntrinsicVpceBlacklist":["IntrinsicVpceBlacklistValue"],"IntrinsicVpceWhitelist":["IntrinsicVpceWhitelistValue"],"IpRangeBlacklist":["IpRangeBlacklistValue"],"IpRangeWhitelist":["IpRangeWhitelistValue"],"SourceVpcBlacklist":["SourceVpcBlacklistValue"],"SourceVpcWhitelist":["SourceVpcWhitelistValue"]}},"Method":"MethodValue","Path":"PathValue","RestApiId":"RestApiIdValue"}`
+			bytes, err := event.MarshalJSON()
+			Expect(err).To(BeNil())
+			Expect(string(bytes)).To(Equal(expectedString))
 		})
 	})
 
@@ -1279,6 +1347,62 @@ var _ = Describe("Goformation", func() {
       "Type": "AWS::EC2::VPC"
     }
   }
+}`
+
+			got, err := template.JSON()
+			It("should marshal template successfully", func() {
+				Expect(err).To(BeNil())
+			})
+
+			It("should be equal to expected output", func() {
+				Expect(string(got)).To(Equal(expected))
+			})
+		})
+	})
+
+	Context("with a SAM template", func() {
+
+		Context("described as Go structs", func() {
+			template := cloudformation.NewTemplate()
+			transform := "AWS::Serverless-2016-10-31"
+			transformStruct := &cloudformation.Transform{
+				String: &transform,
+			}
+			template.Transform = transformStruct
+
+			codeUri := "hello-world/"
+			template.Resources["HelloWorldFunction"] = &serverless.Function{
+				CodeUri: &serverless.Function_CodeUri{
+					String: &codeUri,
+				},
+				Handler: "hello-world",
+				Runtime: "go1.x",
+			}
+
+			globals := cloudformation.Globals{}
+			globals["Function"] = &global.Function{
+				Timeout: 123,
+			}
+			template.Globals = globals
+
+			expected := `{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Globals": {
+    "Function": {
+      "Timeout": 123
+    }
+  },
+  "Resources": {
+    "HelloWorldFunction": {
+      "Properties": {
+        "CodeUri": "hello-world/",
+        "Handler": "hello-world",
+        "Runtime": "go1.x"
+      },
+      "Type": "AWS::Serverless::Function"
+    }
+  },
+  "Transform": "AWS::Serverless-2016-10-31"
 }`
 
 			got, err := template.JSON()

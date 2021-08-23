@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
-	"github.com/awslabs/goformation/v4/cloudformation/tags"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/tags"
 )
 
 // NatGateway AWS CloudFormation Resource (AWS::EC2::NatGateway)
@@ -14,9 +14,14 @@ import (
 type NatGateway struct {
 
 	// AllocationId AWS CloudFormation Property
-	// Required: true
+	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html#cfn-ec2-natgateway-allocationid
 	AllocationId string `json:"AllocationId,omitempty"`
+
+	// ConnectivityType AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html#cfn-ec2-natgateway-connectivitytype
+	ConnectivityType string `json:"ConnectivityType,omitempty"`
 
 	// SubnetId AWS CloudFormation Property
 	// Required: true

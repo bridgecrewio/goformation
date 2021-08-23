@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // GraphQLApi AWS CloudFormation Resource (AWS::AppSync::GraphQLApi)
@@ -21,6 +21,11 @@ type GraphQLApi struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-authenticationtype
 	AuthenticationType string `json:"AuthenticationType,omitempty"`
+
+	// LambdaAuthorizerConfig AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-lambdaauthorizerconfig
+	LambdaAuthorizerConfig *GraphQLApi_LambdaAuthorizerConfig `json:"LambdaAuthorizerConfig,omitempty"`
 
 	// LogConfig AWS CloudFormation Property
 	// Required: false

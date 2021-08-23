@@ -5,12 +5,22 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // Endpoint AWS CloudFormation Resource (AWS::S3Outposts::Endpoint)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html
 type Endpoint struct {
+
+	// AccessType AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html#cfn-s3outposts-endpoint-accesstype
+	AccessType string `json:"AccessType,omitempty"`
+
+	// CustomerOwnedIpv4Pool AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html#cfn-s3outposts-endpoint-customerownedipv4pool
+	CustomerOwnedIpv4Pool string `json:"CustomerOwnedIpv4Pool,omitempty"`
 
 	// OutpostId AWS CloudFormation Property
 	// Required: true

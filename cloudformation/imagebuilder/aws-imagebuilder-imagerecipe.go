@@ -5,12 +5,17 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // ImageRecipe AWS CloudFormation Resource (AWS::ImageBuilder::ImageRecipe)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagerecipe.html
 type ImageRecipe struct {
+
+	// AdditionalInstanceConfiguration AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagerecipe.html#cfn-imagebuilder-imagerecipe-additionalinstanceconfiguration
+	AdditionalInstanceConfiguration *ImageRecipe_AdditionalInstanceConfiguration `json:"AdditionalInstanceConfiguration,omitempty"`
 
 	// BlockDeviceMappings AWS CloudFormation Property
 	// Required: false

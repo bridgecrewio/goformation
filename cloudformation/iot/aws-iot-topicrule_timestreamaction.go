@@ -1,12 +1,17 @@
 package iot
 
 import (
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // TopicRule_TimestreamAction AWS CloudFormation Resource (AWS::IoT::TopicRule.TimestreamAction)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestreamaction.html
 type TopicRule_TimestreamAction struct {
+
+	// BatchMode AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestreamaction.html#cfn-iot-topicrule-timestreamaction-batchmode
+	BatchMode bool `json:"BatchMode,omitempty"`
 
 	// DatabaseName AWS CloudFormation Property
 	// Required: true

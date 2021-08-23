@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
-	"github.com/awslabs/goformation/v4/cloudformation/tags"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/tags"
 )
 
 // TransitGateway AWS CloudFormation Resource (AWS::EC2::TransitGateway)
@@ -17,6 +17,11 @@ type TransitGateway struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-amazonsideasn
 	AmazonSideAsn int `json:"AmazonSideAsn,omitempty"`
+
+	// AssociationDefaultRouteTableId AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-associationdefaultroutetableid
+	AssociationDefaultRouteTableId string `json:"AssociationDefaultRouteTableId,omitempty"`
 
 	// AutoAcceptSharedAttachments AWS CloudFormation Property
 	// Required: false
@@ -48,10 +53,20 @@ type TransitGateway struct {
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-multicastsupport
 	MulticastSupport string `json:"MulticastSupport,omitempty"`
 
+	// PropagationDefaultRouteTableId AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-propagationdefaultroutetableid
+	PropagationDefaultRouteTableId string `json:"PropagationDefaultRouteTableId,omitempty"`
+
 	// Tags AWS CloudFormation Property
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-tags
 	Tags []tags.Tag `json:"Tags,omitempty"`
+
+	// TransitGatewayCidrBlocks AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-transitgatewaycidrblocks
+	TransitGatewayCidrBlocks []string `json:"TransitGatewayCidrBlocks,omitempty"`
 
 	// VpnEcmpSupport AWS CloudFormation Property
 	// Required: false

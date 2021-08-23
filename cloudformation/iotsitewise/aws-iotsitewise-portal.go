@@ -5,13 +5,23 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
-	"github.com/awslabs/goformation/v4/cloudformation/tags"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/tags"
 )
 
 // Portal AWS CloudFormation Resource (AWS::IoTSiteWise::Portal)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-portal.html
 type Portal struct {
+
+	// Alarms AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-portal.html#cfn-iotsitewise-portal-alarms
+	Alarms interface{} `json:"Alarms,omitempty"`
+
+	// NotificationSenderEmail AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-portal.html#cfn-iotsitewise-portal-notificationsenderemail
+	NotificationSenderEmail string `json:"NotificationSenderEmail,omitempty"`
 
 	// PortalAuthMode AWS CloudFormation Property
 	// Required: false

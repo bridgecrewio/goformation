@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
-	"github.com/awslabs/goformation/v4/cloudformation/tags"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/tags"
 )
 
 // Function AWS CloudFormation Resource (AWS::Lambda::Function)
@@ -52,11 +52,6 @@ type Function struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-handler
 	Handler string `json:"Handler,omitempty"`
-
-	// Id AWS CloudFormation Property
-	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-id
-	Id string `json:"Id,omitempty"`
 
 	// ImageConfig AWS CloudFormation Property
 	// Required: false

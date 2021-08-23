@@ -1,12 +1,17 @@
 package glue
 
 import (
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // Database_DatabaseInput AWS CloudFormation Resource (AWS::Glue::Database.DatabaseInput)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseinput.html
 type Database_DatabaseInput struct {
+
+	// CreateTableDefaultPermissions AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseinput.html#cfn-glue-database-databaseinput-createtabledefaultpermissions
+	CreateTableDefaultPermissions []Database_PrincipalPrivileges `json:"CreateTableDefaultPermissions,omitempty"`
 
 	// Description AWS CloudFormation Property
 	// Required: false

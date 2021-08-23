@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // EventSourceMapping AWS CloudFormation Resource (AWS::Lambda::EventSourceMapping)
@@ -86,6 +86,11 @@ type EventSourceMapping struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-startingposition
 	StartingPosition string `json:"StartingPosition,omitempty"`
+
+	// StartingPositionTimestamp AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-startingpositiontimestamp
+	StartingPositionTimestamp float64 `json:"StartingPositionTimestamp,omitempty"`
 
 	// Topics AWS CloudFormation Property
 	// Required: false

@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
-	"github.com/awslabs/goformation/v4/cloudformation/tags"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/tags"
 )
 
 // PrivateDnsNamespace AWS CloudFormation Resource (AWS::ServiceDiscovery::PrivateDnsNamespace)
@@ -22,6 +22,11 @@ type PrivateDnsNamespace struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html#cfn-servicediscovery-privatednsnamespace-name
 	Name string `json:"Name,omitempty"`
+
+	// Properties AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html#cfn-servicediscovery-privatednsnamespace-properties
+	Properties *PrivateDnsNamespace_Properties `json:"Properties,omitempty"`
 
 	// Tags AWS CloudFormation Property
 	// Required: false

@@ -2,169 +2,175 @@ package cloudformation
 
 import (
 	"fmt"
-	"github.com/awslabs/goformation/v4/cloudformation/accessanalyzer"
-	"github.com/awslabs/goformation/v4/cloudformation/acmpca"
-	"github.com/awslabs/goformation/v4/cloudformation/amazonmq"
-	"github.com/awslabs/goformation/v4/cloudformation/amplify"
-	"github.com/awslabs/goformation/v4/cloudformation/apigateway"
-	"github.com/awslabs/goformation/v4/cloudformation/apigatewayv2"
-	"github.com/awslabs/goformation/v4/cloudformation/appconfig"
-	"github.com/awslabs/goformation/v4/cloudformation/appflow"
-	"github.com/awslabs/goformation/v4/cloudformation/appintegrations"
-	"github.com/awslabs/goformation/v4/cloudformation/applicationautoscaling"
-	"github.com/awslabs/goformation/v4/cloudformation/applicationinsights"
-	"github.com/awslabs/goformation/v4/cloudformation/appmesh"
-	"github.com/awslabs/goformation/v4/cloudformation/apprunner"
-	"github.com/awslabs/goformation/v4/cloudformation/appstream"
-	"github.com/awslabs/goformation/v4/cloudformation/appsync"
-	"github.com/awslabs/goformation/v4/cloudformation/ask"
-	"github.com/awslabs/goformation/v4/cloudformation/athena"
-	"github.com/awslabs/goformation/v4/cloudformation/auditmanager"
-	"github.com/awslabs/goformation/v4/cloudformation/autoscaling"
-	"github.com/awslabs/goformation/v4/cloudformation/autoscalingplans"
-	"github.com/awslabs/goformation/v4/cloudformation/backup"
-	"github.com/awslabs/goformation/v4/cloudformation/batch"
-	"github.com/awslabs/goformation/v4/cloudformation/budgets"
-	"github.com/awslabs/goformation/v4/cloudformation/cassandra"
-	"github.com/awslabs/goformation/v4/cloudformation/ce"
-	"github.com/awslabs/goformation/v4/cloudformation/certificatemanager"
-	"github.com/awslabs/goformation/v4/cloudformation/chatbot"
-	"github.com/awslabs/goformation/v4/cloudformation/cloud9"
-	"github.com/awslabs/goformation/v4/cloudformation/cloudformation"
-	"github.com/awslabs/goformation/v4/cloudformation/cloudfront"
-	"github.com/awslabs/goformation/v4/cloudformation/cloudtrail"
-	"github.com/awslabs/goformation/v4/cloudformation/cloudwatch"
-	"github.com/awslabs/goformation/v4/cloudformation/codeartifact"
-	"github.com/awslabs/goformation/v4/cloudformation/codebuild"
-	"github.com/awslabs/goformation/v4/cloudformation/codecommit"
-	"github.com/awslabs/goformation/v4/cloudformation/codedeploy"
-	"github.com/awslabs/goformation/v4/cloudformation/codeguruprofiler"
-	"github.com/awslabs/goformation/v4/cloudformation/codegurureviewer"
-	"github.com/awslabs/goformation/v4/cloudformation/codepipeline"
-	"github.com/awslabs/goformation/v4/cloudformation/codestar"
-	"github.com/awslabs/goformation/v4/cloudformation/codestarconnections"
-	"github.com/awslabs/goformation/v4/cloudformation/codestarnotifications"
-	"github.com/awslabs/goformation/v4/cloudformation/cognito"
-	"github.com/awslabs/goformation/v4/cloudformation/config"
-	"github.com/awslabs/goformation/v4/cloudformation/cur"
-	"github.com/awslabs/goformation/v4/cloudformation/customerprofiles"
-	"github.com/awslabs/goformation/v4/cloudformation/databrew"
-	"github.com/awslabs/goformation/v4/cloudformation/datapipeline"
-	"github.com/awslabs/goformation/v4/cloudformation/datasync"
-	"github.com/awslabs/goformation/v4/cloudformation/dax"
-	"github.com/awslabs/goformation/v4/cloudformation/detective"
-	"github.com/awslabs/goformation/v4/cloudformation/devopsguru"
-	"github.com/awslabs/goformation/v4/cloudformation/directoryservice"
-	"github.com/awslabs/goformation/v4/cloudformation/dlm"
-	"github.com/awslabs/goformation/v4/cloudformation/dms"
-	"github.com/awslabs/goformation/v4/cloudformation/docdb"
-	"github.com/awslabs/goformation/v4/cloudformation/dynamodb"
-	"github.com/awslabs/goformation/v4/cloudformation/ec2"
-	"github.com/awslabs/goformation/v4/cloudformation/ecr"
-	"github.com/awslabs/goformation/v4/cloudformation/ecs"
-	"github.com/awslabs/goformation/v4/cloudformation/efs"
-	"github.com/awslabs/goformation/v4/cloudformation/eks"
-	"github.com/awslabs/goformation/v4/cloudformation/elasticache"
-	"github.com/awslabs/goformation/v4/cloudformation/elasticbeanstalk"
-	"github.com/awslabs/goformation/v4/cloudformation/elasticloadbalancing"
-	"github.com/awslabs/goformation/v4/cloudformation/elasticloadbalancingv2"
-	"github.com/awslabs/goformation/v4/cloudformation/elasticsearch"
-	"github.com/awslabs/goformation/v4/cloudformation/emr"
-	"github.com/awslabs/goformation/v4/cloudformation/emrcontainers"
-	"github.com/awslabs/goformation/v4/cloudformation/events"
-	"github.com/awslabs/goformation/v4/cloudformation/eventschemas"
-	"github.com/awslabs/goformation/v4/cloudformation/finspace"
-	"github.com/awslabs/goformation/v4/cloudformation/fis"
-	"github.com/awslabs/goformation/v4/cloudformation/fms"
-	"github.com/awslabs/goformation/v4/cloudformation/frauddetector"
-	"github.com/awslabs/goformation/v4/cloudformation/fsx"
-	"github.com/awslabs/goformation/v4/cloudformation/gamelift"
-	"github.com/awslabs/goformation/v4/cloudformation/globalaccelerator"
-	"github.com/awslabs/goformation/v4/cloudformation/glue"
-	"github.com/awslabs/goformation/v4/cloudformation/greengrass"
-	"github.com/awslabs/goformation/v4/cloudformation/greengrassv2"
-	"github.com/awslabs/goformation/v4/cloudformation/groundstation"
-	"github.com/awslabs/goformation/v4/cloudformation/guardduty"
-	"github.com/awslabs/goformation/v4/cloudformation/iam"
-	"github.com/awslabs/goformation/v4/cloudformation/imagebuilder"
-	"github.com/awslabs/goformation/v4/cloudformation/inspector"
-	"github.com/awslabs/goformation/v4/cloudformation/iot"
-	"github.com/awslabs/goformation/v4/cloudformation/iot1click"
-	"github.com/awslabs/goformation/v4/cloudformation/iotanalytics"
-	"github.com/awslabs/goformation/v4/cloudformation/iotcoredeviceadvisor"
-	"github.com/awslabs/goformation/v4/cloudformation/iotevents"
-	"github.com/awslabs/goformation/v4/cloudformation/iotfleethub"
-	"github.com/awslabs/goformation/v4/cloudformation/iotsitewise"
-	"github.com/awslabs/goformation/v4/cloudformation/iotthingsgraph"
-	"github.com/awslabs/goformation/v4/cloudformation/iotwireless"
-	"github.com/awslabs/goformation/v4/cloudformation/ivs"
-	"github.com/awslabs/goformation/v4/cloudformation/kendra"
-	"github.com/awslabs/goformation/v4/cloudformation/kinesis"
-	"github.com/awslabs/goformation/v4/cloudformation/kinesisanalytics"
-	"github.com/awslabs/goformation/v4/cloudformation/kinesisanalyticsv2"
-	"github.com/awslabs/goformation/v4/cloudformation/kinesisfirehose"
-	"github.com/awslabs/goformation/v4/cloudformation/kms"
-	"github.com/awslabs/goformation/v4/cloudformation/lakeformation"
-	"github.com/awslabs/goformation/v4/cloudformation/lambda"
-	"github.com/awslabs/goformation/v4/cloudformation/licensemanager"
-	"github.com/awslabs/goformation/v4/cloudformation/location"
-	"github.com/awslabs/goformation/v4/cloudformation/logs"
-	"github.com/awslabs/goformation/v4/cloudformation/lookoutmetrics"
-	"github.com/awslabs/goformation/v4/cloudformation/lookoutvision"
-	"github.com/awslabs/goformation/v4/cloudformation/macie"
-	"github.com/awslabs/goformation/v4/cloudformation/managedblockchain"
-	"github.com/awslabs/goformation/v4/cloudformation/mediaconnect"
-	"github.com/awslabs/goformation/v4/cloudformation/mediaconvert"
-	"github.com/awslabs/goformation/v4/cloudformation/medialive"
-	"github.com/awslabs/goformation/v4/cloudformation/mediapackage"
-	"github.com/awslabs/goformation/v4/cloudformation/mediastore"
-	"github.com/awslabs/goformation/v4/cloudformation/msk"
-	"github.com/awslabs/goformation/v4/cloudformation/mwaa"
-	"github.com/awslabs/goformation/v4/cloudformation/neptune"
-	"github.com/awslabs/goformation/v4/cloudformation/networkfirewall"
-	"github.com/awslabs/goformation/v4/cloudformation/networkmanager"
-	"github.com/awslabs/goformation/v4/cloudformation/nimblestudio"
-	"github.com/awslabs/goformation/v4/cloudformation/opsworks"
-	"github.com/awslabs/goformation/v4/cloudformation/opsworkscm"
-	"github.com/awslabs/goformation/v4/cloudformation/pinpoint"
-	"github.com/awslabs/goformation/v4/cloudformation/pinpointemail"
-	"github.com/awslabs/goformation/v4/cloudformation/qldb"
-	"github.com/awslabs/goformation/v4/cloudformation/quicksight"
-	"github.com/awslabs/goformation/v4/cloudformation/ram"
-	"github.com/awslabs/goformation/v4/cloudformation/rds"
-	"github.com/awslabs/goformation/v4/cloudformation/redshift"
-	"github.com/awslabs/goformation/v4/cloudformation/resourcegroups"
-	"github.com/awslabs/goformation/v4/cloudformation/robomaker"
-	"github.com/awslabs/goformation/v4/cloudformation/route53"
-	"github.com/awslabs/goformation/v4/cloudformation/route53resolver"
-	"github.com/awslabs/goformation/v4/cloudformation/s3"
-	"github.com/awslabs/goformation/v4/cloudformation/s3objectlambda"
-	"github.com/awslabs/goformation/v4/cloudformation/s3outposts"
-	"github.com/awslabs/goformation/v4/cloudformation/sagemaker"
-	"github.com/awslabs/goformation/v4/cloudformation/sdb"
-	"github.com/awslabs/goformation/v4/cloudformation/secretsmanager"
-	"github.com/awslabs/goformation/v4/cloudformation/securityhub"
-	"github.com/awslabs/goformation/v4/cloudformation/serverless"
-	"github.com/awslabs/goformation/v4/cloudformation/servicecatalog"
-	"github.com/awslabs/goformation/v4/cloudformation/servicecatalogappregistry"
-	"github.com/awslabs/goformation/v4/cloudformation/servicediscovery"
-	"github.com/awslabs/goformation/v4/cloudformation/ses"
-	"github.com/awslabs/goformation/v4/cloudformation/signer"
-	"github.com/awslabs/goformation/v4/cloudformation/sns"
-	"github.com/awslabs/goformation/v4/cloudformation/sqs"
-	"github.com/awslabs/goformation/v4/cloudformation/ssm"
-	"github.com/awslabs/goformation/v4/cloudformation/ssmcontacts"
-	"github.com/awslabs/goformation/v4/cloudformation/ssmincidents"
-	"github.com/awslabs/goformation/v4/cloudformation/sso"
-	"github.com/awslabs/goformation/v4/cloudformation/stepfunctions"
-	"github.com/awslabs/goformation/v4/cloudformation/synthetics"
-	"github.com/awslabs/goformation/v4/cloudformation/timestream"
-	"github.com/awslabs/goformation/v4/cloudformation/transfer"
-	"github.com/awslabs/goformation/v4/cloudformation/waf"
-	"github.com/awslabs/goformation/v4/cloudformation/wafregional"
-	"github.com/awslabs/goformation/v4/cloudformation/wafv2"
-	"github.com/awslabs/goformation/v4/cloudformation/workspaces"
-	"github.com/awslabs/goformation/v4/cloudformation/xray"
+	"github.com/awslabs/goformation/v5/cloudformation/accessanalyzer"
+	"github.com/awslabs/goformation/v5/cloudformation/acmpca"
+	"github.com/awslabs/goformation/v5/cloudformation/amazonmq"
+	"github.com/awslabs/goformation/v5/cloudformation/amplify"
+	"github.com/awslabs/goformation/v5/cloudformation/apigateway"
+	"github.com/awslabs/goformation/v5/cloudformation/apigatewayv2"
+	"github.com/awslabs/goformation/v5/cloudformation/appconfig"
+	"github.com/awslabs/goformation/v5/cloudformation/appflow"
+	"github.com/awslabs/goformation/v5/cloudformation/appintegrations"
+	"github.com/awslabs/goformation/v5/cloudformation/applicationautoscaling"
+	"github.com/awslabs/goformation/v5/cloudformation/applicationinsights"
+	"github.com/awslabs/goformation/v5/cloudformation/appmesh"
+	"github.com/awslabs/goformation/v5/cloudformation/apprunner"
+	"github.com/awslabs/goformation/v5/cloudformation/appstream"
+	"github.com/awslabs/goformation/v5/cloudformation/appsync"
+	"github.com/awslabs/goformation/v5/cloudformation/ask"
+	"github.com/awslabs/goformation/v5/cloudformation/athena"
+	"github.com/awslabs/goformation/v5/cloudformation/auditmanager"
+	"github.com/awslabs/goformation/v5/cloudformation/autoscaling"
+	"github.com/awslabs/goformation/v5/cloudformation/autoscalingplans"
+	"github.com/awslabs/goformation/v5/cloudformation/backup"
+	"github.com/awslabs/goformation/v5/cloudformation/batch"
+	"github.com/awslabs/goformation/v5/cloudformation/budgets"
+	"github.com/awslabs/goformation/v5/cloudformation/cassandra"
+	"github.com/awslabs/goformation/v5/cloudformation/ce"
+	"github.com/awslabs/goformation/v5/cloudformation/certificatemanager"
+	"github.com/awslabs/goformation/v5/cloudformation/chatbot"
+	"github.com/awslabs/goformation/v5/cloudformation/cloud9"
+	"github.com/awslabs/goformation/v5/cloudformation/cloudformation"
+	"github.com/awslabs/goformation/v5/cloudformation/cloudfront"
+	"github.com/awslabs/goformation/v5/cloudformation/cloudtrail"
+	"github.com/awslabs/goformation/v5/cloudformation/cloudwatch"
+	"github.com/awslabs/goformation/v5/cloudformation/codeartifact"
+	"github.com/awslabs/goformation/v5/cloudformation/codebuild"
+	"github.com/awslabs/goformation/v5/cloudformation/codecommit"
+	"github.com/awslabs/goformation/v5/cloudformation/codedeploy"
+	"github.com/awslabs/goformation/v5/cloudformation/codeguruprofiler"
+	"github.com/awslabs/goformation/v5/cloudformation/codegurureviewer"
+	"github.com/awslabs/goformation/v5/cloudformation/codepipeline"
+	"github.com/awslabs/goformation/v5/cloudformation/codestar"
+	"github.com/awslabs/goformation/v5/cloudformation/codestarconnections"
+	"github.com/awslabs/goformation/v5/cloudformation/codestarnotifications"
+	"github.com/awslabs/goformation/v5/cloudformation/cognito"
+	"github.com/awslabs/goformation/v5/cloudformation/config"
+	"github.com/awslabs/goformation/v5/cloudformation/connect"
+	"github.com/awslabs/goformation/v5/cloudformation/cur"
+	"github.com/awslabs/goformation/v5/cloudformation/customerprofiles"
+	"github.com/awslabs/goformation/v5/cloudformation/databrew"
+	"github.com/awslabs/goformation/v5/cloudformation/datapipeline"
+	"github.com/awslabs/goformation/v5/cloudformation/datasync"
+	"github.com/awslabs/goformation/v5/cloudformation/dax"
+	"github.com/awslabs/goformation/v5/cloudformation/detective"
+	"github.com/awslabs/goformation/v5/cloudformation/devopsguru"
+	"github.com/awslabs/goformation/v5/cloudformation/directoryservice"
+	"github.com/awslabs/goformation/v5/cloudformation/dlm"
+	"github.com/awslabs/goformation/v5/cloudformation/dms"
+	"github.com/awslabs/goformation/v5/cloudformation/docdb"
+	"github.com/awslabs/goformation/v5/cloudformation/dynamodb"
+	"github.com/awslabs/goformation/v5/cloudformation/ec2"
+	"github.com/awslabs/goformation/v5/cloudformation/ecr"
+	"github.com/awslabs/goformation/v5/cloudformation/ecs"
+	"github.com/awslabs/goformation/v5/cloudformation/efs"
+	"github.com/awslabs/goformation/v5/cloudformation/eks"
+	"github.com/awslabs/goformation/v5/cloudformation/elasticache"
+	"github.com/awslabs/goformation/v5/cloudformation/elasticbeanstalk"
+	"github.com/awslabs/goformation/v5/cloudformation/elasticloadbalancing"
+	"github.com/awslabs/goformation/v5/cloudformation/elasticloadbalancingv2"
+	"github.com/awslabs/goformation/v5/cloudformation/elasticsearch"
+	"github.com/awslabs/goformation/v5/cloudformation/emr"
+	"github.com/awslabs/goformation/v5/cloudformation/emrcontainers"
+	"github.com/awslabs/goformation/v5/cloudformation/events"
+	"github.com/awslabs/goformation/v5/cloudformation/eventschemas"
+	"github.com/awslabs/goformation/v5/cloudformation/finspace"
+	"github.com/awslabs/goformation/v5/cloudformation/fis"
+	"github.com/awslabs/goformation/v5/cloudformation/fms"
+	"github.com/awslabs/goformation/v5/cloudformation/frauddetector"
+	"github.com/awslabs/goformation/v5/cloudformation/fsx"
+	"github.com/awslabs/goformation/v5/cloudformation/gamelift"
+	"github.com/awslabs/goformation/v5/cloudformation/globalaccelerator"
+	"github.com/awslabs/goformation/v5/cloudformation/glue"
+	"github.com/awslabs/goformation/v5/cloudformation/greengrass"
+	"github.com/awslabs/goformation/v5/cloudformation/greengrassv2"
+	"github.com/awslabs/goformation/v5/cloudformation/groundstation"
+	"github.com/awslabs/goformation/v5/cloudformation/guardduty"
+	"github.com/awslabs/goformation/v5/cloudformation/iam"
+	"github.com/awslabs/goformation/v5/cloudformation/imagebuilder"
+	"github.com/awslabs/goformation/v5/cloudformation/inspector"
+	"github.com/awslabs/goformation/v5/cloudformation/iot"
+	"github.com/awslabs/goformation/v5/cloudformation/iot1click"
+	"github.com/awslabs/goformation/v5/cloudformation/iotanalytics"
+	"github.com/awslabs/goformation/v5/cloudformation/iotcoredeviceadvisor"
+	"github.com/awslabs/goformation/v5/cloudformation/iotevents"
+	"github.com/awslabs/goformation/v5/cloudformation/iotfleethub"
+	"github.com/awslabs/goformation/v5/cloudformation/iotsitewise"
+	"github.com/awslabs/goformation/v5/cloudformation/iotthingsgraph"
+	"github.com/awslabs/goformation/v5/cloudformation/iotwireless"
+	"github.com/awslabs/goformation/v5/cloudformation/ivs"
+	"github.com/awslabs/goformation/v5/cloudformation/kendra"
+	"github.com/awslabs/goformation/v5/cloudformation/kinesis"
+	"github.com/awslabs/goformation/v5/cloudformation/kinesisanalytics"
+	"github.com/awslabs/goformation/v5/cloudformation/kinesisanalyticsv2"
+	"github.com/awslabs/goformation/v5/cloudformation/kinesisfirehose"
+	"github.com/awslabs/goformation/v5/cloudformation/kms"
+	"github.com/awslabs/goformation/v5/cloudformation/lakeformation"
+	"github.com/awslabs/goformation/v5/cloudformation/lambda"
+	"github.com/awslabs/goformation/v5/cloudformation/licensemanager"
+	"github.com/awslabs/goformation/v5/cloudformation/location"
+	"github.com/awslabs/goformation/v5/cloudformation/logs"
+	"github.com/awslabs/goformation/v5/cloudformation/lookoutequipment"
+	"github.com/awslabs/goformation/v5/cloudformation/lookoutmetrics"
+	"github.com/awslabs/goformation/v5/cloudformation/lookoutvision"
+	"github.com/awslabs/goformation/v5/cloudformation/macie"
+	"github.com/awslabs/goformation/v5/cloudformation/managedblockchain"
+	"github.com/awslabs/goformation/v5/cloudformation/mediaconnect"
+	"github.com/awslabs/goformation/v5/cloudformation/mediaconvert"
+	"github.com/awslabs/goformation/v5/cloudformation/medialive"
+	"github.com/awslabs/goformation/v5/cloudformation/mediapackage"
+	"github.com/awslabs/goformation/v5/cloudformation/mediastore"
+	"github.com/awslabs/goformation/v5/cloudformation/msk"
+	"github.com/awslabs/goformation/v5/cloudformation/mwaa"
+	"github.com/awslabs/goformation/v5/cloudformation/neptune"
+	"github.com/awslabs/goformation/v5/cloudformation/networkfirewall"
+	"github.com/awslabs/goformation/v5/cloudformation/networkmanager"
+	"github.com/awslabs/goformation/v5/cloudformation/nimblestudio"
+	"github.com/awslabs/goformation/v5/cloudformation/opsworks"
+	"github.com/awslabs/goformation/v5/cloudformation/opsworkscm"
+	"github.com/awslabs/goformation/v5/cloudformation/pinpoint"
+	"github.com/awslabs/goformation/v5/cloudformation/pinpointemail"
+	"github.com/awslabs/goformation/v5/cloudformation/qldb"
+	"github.com/awslabs/goformation/v5/cloudformation/quicksight"
+	"github.com/awslabs/goformation/v5/cloudformation/ram"
+	"github.com/awslabs/goformation/v5/cloudformation/rds"
+	"github.com/awslabs/goformation/v5/cloudformation/redshift"
+	"github.com/awslabs/goformation/v5/cloudformation/resourcegroups"
+	"github.com/awslabs/goformation/v5/cloudformation/robomaker"
+	"github.com/awslabs/goformation/v5/cloudformation/route53"
+	"github.com/awslabs/goformation/v5/cloudformation/route53recoverycontrol"
+	"github.com/awslabs/goformation/v5/cloudformation/route53recoveryreadiness"
+	"github.com/awslabs/goformation/v5/cloudformation/route53resolver"
+	"github.com/awslabs/goformation/v5/cloudformation/s3"
+	"github.com/awslabs/goformation/v5/cloudformation/s3objectlambda"
+	"github.com/awslabs/goformation/v5/cloudformation/s3outposts"
+	"github.com/awslabs/goformation/v5/cloudformation/sagemaker"
+	"github.com/awslabs/goformation/v5/cloudformation/sdb"
+	"github.com/awslabs/goformation/v5/cloudformation/secretsmanager"
+	"github.com/awslabs/goformation/v5/cloudformation/securityhub"
+	"github.com/awslabs/goformation/v5/cloudformation/serverless"
+	"github.com/awslabs/goformation/v5/cloudformation/servicecatalog"
+	"github.com/awslabs/goformation/v5/cloudformation/servicecatalogappregistry"
+	"github.com/awslabs/goformation/v5/cloudformation/servicediscovery"
+	"github.com/awslabs/goformation/v5/cloudformation/ses"
+	"github.com/awslabs/goformation/v5/cloudformation/signer"
+	"github.com/awslabs/goformation/v5/cloudformation/sns"
+	"github.com/awslabs/goformation/v5/cloudformation/sqs"
+	"github.com/awslabs/goformation/v5/cloudformation/ssm"
+	"github.com/awslabs/goformation/v5/cloudformation/ssmcontacts"
+	"github.com/awslabs/goformation/v5/cloudformation/ssmincidents"
+	"github.com/awslabs/goformation/v5/cloudformation/sso"
+	"github.com/awslabs/goformation/v5/cloudformation/stepfunctions"
+	"github.com/awslabs/goformation/v5/cloudformation/synthetics"
+	"github.com/awslabs/goformation/v5/cloudformation/timestream"
+	"github.com/awslabs/goformation/v5/cloudformation/transfer"
+	"github.com/awslabs/goformation/v5/cloudformation/waf"
+	"github.com/awslabs/goformation/v5/cloudformation/wafregional"
+	"github.com/awslabs/goformation/v5/cloudformation/wafv2"
+	"github.com/awslabs/goformation/v5/cloudformation/workspaces"
+	"github.com/awslabs/goformation/v5/cloudformation/xray"
+
+	"github.com/awslabs/goformation/v5/cloudformation/global"
 )
 
 // AllResources fetches an iterable map all CloudFormation and SAM resources
@@ -248,6 +254,7 @@ func AllResources() map[string]Resource {
 		"AWS::ApplicationInsights::Application":                       &applicationinsights.Application{},
 		"AWS::Athena::DataCatalog":                                    &athena.DataCatalog{},
 		"AWS::Athena::NamedQuery":                                     &athena.NamedQuery{},
+		"AWS::Athena::PreparedStatement":                              &athena.PreparedStatement{},
 		"AWS::Athena::WorkGroup":                                      &athena.WorkGroup{},
 		"AWS::AuditManager::Assessment":                               &auditmanager.Assessment{},
 		"AWS::AutoScaling::AutoScalingGroup":                          &autoscaling.AutoScalingGroup{},
@@ -279,10 +286,13 @@ func AllResources() map[string]Resource {
 		"AWS::CloudFormation::Macro":                                  &cloudformation.Macro{},
 		"AWS::CloudFormation::ModuleDefaultVersion":                   &cloudformation.ModuleDefaultVersion{},
 		"AWS::CloudFormation::ModuleVersion":                          &cloudformation.ModuleVersion{},
+		"AWS::CloudFormation::PublicTypeVersion":                      &cloudformation.PublicTypeVersion{},
+		"AWS::CloudFormation::Publisher":                              &cloudformation.Publisher{},
 		"AWS::CloudFormation::ResourceDefaultVersion":                 &cloudformation.ResourceDefaultVersion{},
 		"AWS::CloudFormation::ResourceVersion":                        &cloudformation.ResourceVersion{},
 		"AWS::CloudFormation::Stack":                                  &cloudformation.Stack{},
 		"AWS::CloudFormation::StackSet":                               &cloudformation.StackSet{},
+		"AWS::CloudFormation::TypeActivation":                         &cloudformation.TypeActivation{},
 		"AWS::CloudFormation::WaitCondition":                          &cloudformation.WaitCondition{},
 		"AWS::CloudFormation::WaitConditionHandle":                    &cloudformation.WaitConditionHandle{},
 		"AWS::CloudFront::CachePolicy":                                &cloudfront.CachePolicy{},
@@ -340,6 +350,7 @@ func AllResources() map[string]Resource {
 		"AWS::Config::OrganizationConformancePack":                    &config.OrganizationConformancePack{},
 		"AWS::Config::RemediationConfiguration":                       &config.RemediationConfiguration{},
 		"AWS::Config::StoredQuery":                                    &config.StoredQuery{},
+		"AWS::Connect::QuickConnect":                                  &connect.QuickConnect{},
 		"AWS::CustomerProfiles::Domain":                               &customerprofiles.Domain{},
 		"AWS::CustomerProfiles::Integration":                          &customerprofiles.Integration{},
 		"AWS::CustomerProfiles::ObjectType":                           &customerprofiles.ObjectType{},
@@ -643,6 +654,7 @@ func AllResources() map[string]Resource {
 		"AWS::IoTWireless::WirelessGateway":                           &iotwireless.WirelessGateway{},
 		"AWS::KMS::Alias":                                             &kms.Alias{},
 		"AWS::KMS::Key":                                               &kms.Key{},
+		"AWS::KMS::ReplicaKey":                                        &kms.ReplicaKey{},
 		"AWS::Kendra::DataSource":                                     &kendra.DataSource{},
 		"AWS::Kendra::Faq":                                            &kendra.Faq{},
 		"AWS::Kendra::Index":                                          &kendra.Index{},
@@ -681,7 +693,9 @@ func AllResources() map[string]Resource {
 		"AWS::Logs::LogStream":                                        &logs.LogStream{},
 		"AWS::Logs::MetricFilter":                                     &logs.MetricFilter{},
 		"AWS::Logs::QueryDefinition":                                  &logs.QueryDefinition{},
+		"AWS::Logs::ResourcePolicy":                                   &logs.ResourcePolicy{},
 		"AWS::Logs::SubscriptionFilter":                               &logs.SubscriptionFilter{},
+		"AWS::LookoutEquipment::InferenceScheduler":                   &lookoutequipment.InferenceScheduler{},
 		"AWS::LookoutMetrics::Alert":                                  &lookoutmetrics.Alert{},
 		"AWS::LookoutMetrics::AnomalyDetector":                        &lookoutmetrics.AnomalyDetector{},
 		"AWS::LookoutVision::Project":                                 &lookoutvision.Project{},
@@ -799,6 +813,14 @@ func AllResources() map[string]Resource {
 		"AWS::Route53::KeySigningKey":                                 &route53.KeySigningKey{},
 		"AWS::Route53::RecordSet":                                     &route53.RecordSet{},
 		"AWS::Route53::RecordSetGroup":                                &route53.RecordSetGroup{},
+		"AWS::Route53RecoveryControl::Cluster":                        &route53recoverycontrol.Cluster{},
+		"AWS::Route53RecoveryControl::ControlPanel":                   &route53recoverycontrol.ControlPanel{},
+		"AWS::Route53RecoveryControl::RoutingControl":                 &route53recoverycontrol.RoutingControl{},
+		"AWS::Route53RecoveryControl::SafetyRule":                     &route53recoverycontrol.SafetyRule{},
+		"AWS::Route53RecoveryReadiness::Cell":                         &route53recoveryreadiness.Cell{},
+		"AWS::Route53RecoveryReadiness::ReadinessCheck":               &route53recoveryreadiness.ReadinessCheck{},
+		"AWS::Route53RecoveryReadiness::RecoveryGroup":                &route53recoveryreadiness.RecoveryGroup{},
+		"AWS::Route53RecoveryReadiness::ResourceSet":                  &route53recoveryreadiness.ResourceSet{},
 		"AWS::Route53Resolver::FirewallDomainList":                    &route53resolver.FirewallDomainList{},
 		"AWS::Route53Resolver::FirewallRuleGroup":                     &route53resolver.FirewallRuleGroup{},
 		"AWS::Route53Resolver::FirewallRuleGroupAssociation":          &route53resolver.FirewallRuleGroupAssociation{},
@@ -878,6 +900,7 @@ func AllResources() map[string]Resource {
 		"AWS::Serverless::Api":                                        &serverless.Api{},
 		"AWS::Serverless::Application":                                &serverless.Application{},
 		"AWS::Serverless::Function":                                   &serverless.Function{},
+		"AWS::Serverless::HttpApi":                                    &serverless.HttpApi{},
 		"AWS::Serverless::LayerVersion":                               &serverless.LayerVersion{},
 		"AWS::Serverless::SimpleTable":                                &serverless.SimpleTable{},
 		"AWS::Serverless::StateMachine":                               &serverless.StateMachine{},
@@ -943,6 +966,10 @@ func AllResources() map[string]Resource {
 		"AWS::XRay::Group":                                            &xray.Group{},
 		"AWS::XRay::SamplingRule":                                     &xray.SamplingRule{},
 		"Alexa::ASK::Skill":                                           &ask.Skill{},
+		"Api":                                                         &global.Api{},
+		"Function":                                                    &global.Function{},
+		"HttpApi":                                                     &global.HttpApi{},
+		"SimpleTable":                                                 &global.SimpleTable{},
 	}
 }
 
@@ -2818,6 +2845,30 @@ func (t *Template) GetAthenaNamedQueryWithName(name string) (*athena.NamedQuery,
 	return nil, fmt.Errorf("resource %q of type athena.NamedQuery not found", name)
 }
 
+// GetAllAthenaPreparedStatementResources retrieves all athena.PreparedStatement items from an AWS CloudFormation template
+func (t *Template) GetAllAthenaPreparedStatementResources() map[string]*athena.PreparedStatement {
+	results := map[string]*athena.PreparedStatement{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *athena.PreparedStatement:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetAthenaPreparedStatementWithName retrieves all athena.PreparedStatement items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetAthenaPreparedStatementWithName(name string) (*athena.PreparedStatement, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *athena.PreparedStatement:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type athena.PreparedStatement not found", name)
+}
+
 // GetAllAthenaWorkGroupResources retrieves all athena.WorkGroup items from an AWS CloudFormation template
 func (t *Template) GetAllAthenaWorkGroupResources() map[string]*athena.WorkGroup {
 	results := map[string]*athena.WorkGroup{}
@@ -3562,6 +3613,54 @@ func (t *Template) GetCloudFormationModuleVersionWithName(name string) (*cloudfo
 	return nil, fmt.Errorf("resource %q of type cloudformation.ModuleVersion not found", name)
 }
 
+// GetAllCloudFormationPublicTypeVersionResources retrieves all cloudformation.PublicTypeVersion items from an AWS CloudFormation template
+func (t *Template) GetAllCloudFormationPublicTypeVersionResources() map[string]*cloudformation.PublicTypeVersion {
+	results := map[string]*cloudformation.PublicTypeVersion{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *cloudformation.PublicTypeVersion:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetCloudFormationPublicTypeVersionWithName retrieves all cloudformation.PublicTypeVersion items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetCloudFormationPublicTypeVersionWithName(name string) (*cloudformation.PublicTypeVersion, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *cloudformation.PublicTypeVersion:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type cloudformation.PublicTypeVersion not found", name)
+}
+
+// GetAllCloudFormationPublisherResources retrieves all cloudformation.Publisher items from an AWS CloudFormation template
+func (t *Template) GetAllCloudFormationPublisherResources() map[string]*cloudformation.Publisher {
+	results := map[string]*cloudformation.Publisher{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *cloudformation.Publisher:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetCloudFormationPublisherWithName retrieves all cloudformation.Publisher items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetCloudFormationPublisherWithName(name string) (*cloudformation.Publisher, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *cloudformation.Publisher:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type cloudformation.Publisher not found", name)
+}
+
 // GetAllCloudFormationResourceDefaultVersionResources retrieves all cloudformation.ResourceDefaultVersion items from an AWS CloudFormation template
 func (t *Template) GetAllCloudFormationResourceDefaultVersionResources() map[string]*cloudformation.ResourceDefaultVersion {
 	results := map[string]*cloudformation.ResourceDefaultVersion{}
@@ -3656,6 +3755,30 @@ func (t *Template) GetCloudFormationStackSetWithName(name string) (*cloudformati
 		}
 	}
 	return nil, fmt.Errorf("resource %q of type cloudformation.StackSet not found", name)
+}
+
+// GetAllCloudFormationTypeActivationResources retrieves all cloudformation.TypeActivation items from an AWS CloudFormation template
+func (t *Template) GetAllCloudFormationTypeActivationResources() map[string]*cloudformation.TypeActivation {
+	results := map[string]*cloudformation.TypeActivation{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *cloudformation.TypeActivation:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetCloudFormationTypeActivationWithName retrieves all cloudformation.TypeActivation items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetCloudFormationTypeActivationWithName(name string) (*cloudformation.TypeActivation, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *cloudformation.TypeActivation:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type cloudformation.TypeActivation not found", name)
 }
 
 // GetAllCloudFormationWaitConditionResources retrieves all cloudformation.WaitCondition items from an AWS CloudFormation template
@@ -5024,6 +5147,30 @@ func (t *Template) GetConfigStoredQueryWithName(name string) (*config.StoredQuer
 		}
 	}
 	return nil, fmt.Errorf("resource %q of type config.StoredQuery not found", name)
+}
+
+// GetAllConnectQuickConnectResources retrieves all connect.QuickConnect items from an AWS CloudFormation template
+func (t *Template) GetAllConnectQuickConnectResources() map[string]*connect.QuickConnect {
+	results := map[string]*connect.QuickConnect{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *connect.QuickConnect:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetConnectQuickConnectWithName retrieves all connect.QuickConnect items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetConnectQuickConnectWithName(name string) (*connect.QuickConnect, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *connect.QuickConnect:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type connect.QuickConnect not found", name)
 }
 
 // GetAllCustomerProfilesDomainResources retrieves all customerprofiles.Domain items from an AWS CloudFormation template
@@ -12298,6 +12445,30 @@ func (t *Template) GetKMSKeyWithName(name string) (*kms.Key, error) {
 	return nil, fmt.Errorf("resource %q of type kms.Key not found", name)
 }
 
+// GetAllKMSReplicaKeyResources retrieves all kms.ReplicaKey items from an AWS CloudFormation template
+func (t *Template) GetAllKMSReplicaKeyResources() map[string]*kms.ReplicaKey {
+	results := map[string]*kms.ReplicaKey{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *kms.ReplicaKey:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetKMSReplicaKeyWithName retrieves all kms.ReplicaKey items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetKMSReplicaKeyWithName(name string) (*kms.ReplicaKey, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *kms.ReplicaKey:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type kms.ReplicaKey not found", name)
+}
+
 // GetAllKendraDataSourceResources retrieves all kendra.DataSource items from an AWS CloudFormation template
 func (t *Template) GetAllKendraDataSourceResources() map[string]*kendra.DataSource {
 	results := map[string]*kendra.DataSource{}
@@ -13210,6 +13381,30 @@ func (t *Template) GetLogsQueryDefinitionWithName(name string) (*logs.QueryDefin
 	return nil, fmt.Errorf("resource %q of type logs.QueryDefinition not found", name)
 }
 
+// GetAllLogsResourcePolicyResources retrieves all logs.ResourcePolicy items from an AWS CloudFormation template
+func (t *Template) GetAllLogsResourcePolicyResources() map[string]*logs.ResourcePolicy {
+	results := map[string]*logs.ResourcePolicy{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *logs.ResourcePolicy:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetLogsResourcePolicyWithName retrieves all logs.ResourcePolicy items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetLogsResourcePolicyWithName(name string) (*logs.ResourcePolicy, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *logs.ResourcePolicy:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type logs.ResourcePolicy not found", name)
+}
+
 // GetAllLogsSubscriptionFilterResources retrieves all logs.SubscriptionFilter items from an AWS CloudFormation template
 func (t *Template) GetAllLogsSubscriptionFilterResources() map[string]*logs.SubscriptionFilter {
 	results := map[string]*logs.SubscriptionFilter{}
@@ -13232,6 +13427,30 @@ func (t *Template) GetLogsSubscriptionFilterWithName(name string) (*logs.Subscri
 		}
 	}
 	return nil, fmt.Errorf("resource %q of type logs.SubscriptionFilter not found", name)
+}
+
+// GetAllLookoutEquipmentInferenceSchedulerResources retrieves all lookoutequipment.InferenceScheduler items from an AWS CloudFormation template
+func (t *Template) GetAllLookoutEquipmentInferenceSchedulerResources() map[string]*lookoutequipment.InferenceScheduler {
+	results := map[string]*lookoutequipment.InferenceScheduler{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *lookoutequipment.InferenceScheduler:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetLookoutEquipmentInferenceSchedulerWithName retrieves all lookoutequipment.InferenceScheduler items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetLookoutEquipmentInferenceSchedulerWithName(name string) (*lookoutequipment.InferenceScheduler, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *lookoutequipment.InferenceScheduler:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type lookoutequipment.InferenceScheduler not found", name)
 }
 
 // GetAllLookoutMetricsAlertResources retrieves all lookoutmetrics.Alert items from an AWS CloudFormation template
@@ -16042,6 +16261,198 @@ func (t *Template) GetRoute53RecordSetGroupWithName(name string) (*route53.Recor
 	return nil, fmt.Errorf("resource %q of type route53.RecordSetGroup not found", name)
 }
 
+// GetAllRoute53RecoveryControlClusterResources retrieves all route53recoverycontrol.Cluster items from an AWS CloudFormation template
+func (t *Template) GetAllRoute53RecoveryControlClusterResources() map[string]*route53recoverycontrol.Cluster {
+	results := map[string]*route53recoverycontrol.Cluster{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *route53recoverycontrol.Cluster:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetRoute53RecoveryControlClusterWithName retrieves all route53recoverycontrol.Cluster items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetRoute53RecoveryControlClusterWithName(name string) (*route53recoverycontrol.Cluster, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *route53recoverycontrol.Cluster:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type route53recoverycontrol.Cluster not found", name)
+}
+
+// GetAllRoute53RecoveryControlControlPanelResources retrieves all route53recoverycontrol.ControlPanel items from an AWS CloudFormation template
+func (t *Template) GetAllRoute53RecoveryControlControlPanelResources() map[string]*route53recoverycontrol.ControlPanel {
+	results := map[string]*route53recoverycontrol.ControlPanel{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *route53recoverycontrol.ControlPanel:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetRoute53RecoveryControlControlPanelWithName retrieves all route53recoverycontrol.ControlPanel items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetRoute53RecoveryControlControlPanelWithName(name string) (*route53recoverycontrol.ControlPanel, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *route53recoverycontrol.ControlPanel:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type route53recoverycontrol.ControlPanel not found", name)
+}
+
+// GetAllRoute53RecoveryControlRoutingControlResources retrieves all route53recoverycontrol.RoutingControl items from an AWS CloudFormation template
+func (t *Template) GetAllRoute53RecoveryControlRoutingControlResources() map[string]*route53recoverycontrol.RoutingControl {
+	results := map[string]*route53recoverycontrol.RoutingControl{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *route53recoverycontrol.RoutingControl:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetRoute53RecoveryControlRoutingControlWithName retrieves all route53recoverycontrol.RoutingControl items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetRoute53RecoveryControlRoutingControlWithName(name string) (*route53recoverycontrol.RoutingControl, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *route53recoverycontrol.RoutingControl:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type route53recoverycontrol.RoutingControl not found", name)
+}
+
+// GetAllRoute53RecoveryControlSafetyRuleResources retrieves all route53recoverycontrol.SafetyRule items from an AWS CloudFormation template
+func (t *Template) GetAllRoute53RecoveryControlSafetyRuleResources() map[string]*route53recoverycontrol.SafetyRule {
+	results := map[string]*route53recoverycontrol.SafetyRule{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *route53recoverycontrol.SafetyRule:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetRoute53RecoveryControlSafetyRuleWithName retrieves all route53recoverycontrol.SafetyRule items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetRoute53RecoveryControlSafetyRuleWithName(name string) (*route53recoverycontrol.SafetyRule, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *route53recoverycontrol.SafetyRule:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type route53recoverycontrol.SafetyRule not found", name)
+}
+
+// GetAllRoute53RecoveryReadinessCellResources retrieves all route53recoveryreadiness.Cell items from an AWS CloudFormation template
+func (t *Template) GetAllRoute53RecoveryReadinessCellResources() map[string]*route53recoveryreadiness.Cell {
+	results := map[string]*route53recoveryreadiness.Cell{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *route53recoveryreadiness.Cell:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetRoute53RecoveryReadinessCellWithName retrieves all route53recoveryreadiness.Cell items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetRoute53RecoveryReadinessCellWithName(name string) (*route53recoveryreadiness.Cell, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *route53recoveryreadiness.Cell:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type route53recoveryreadiness.Cell not found", name)
+}
+
+// GetAllRoute53RecoveryReadinessReadinessCheckResources retrieves all route53recoveryreadiness.ReadinessCheck items from an AWS CloudFormation template
+func (t *Template) GetAllRoute53RecoveryReadinessReadinessCheckResources() map[string]*route53recoveryreadiness.ReadinessCheck {
+	results := map[string]*route53recoveryreadiness.ReadinessCheck{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *route53recoveryreadiness.ReadinessCheck:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetRoute53RecoveryReadinessReadinessCheckWithName retrieves all route53recoveryreadiness.ReadinessCheck items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetRoute53RecoveryReadinessReadinessCheckWithName(name string) (*route53recoveryreadiness.ReadinessCheck, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *route53recoveryreadiness.ReadinessCheck:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type route53recoveryreadiness.ReadinessCheck not found", name)
+}
+
+// GetAllRoute53RecoveryReadinessRecoveryGroupResources retrieves all route53recoveryreadiness.RecoveryGroup items from an AWS CloudFormation template
+func (t *Template) GetAllRoute53RecoveryReadinessRecoveryGroupResources() map[string]*route53recoveryreadiness.RecoveryGroup {
+	results := map[string]*route53recoveryreadiness.RecoveryGroup{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *route53recoveryreadiness.RecoveryGroup:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetRoute53RecoveryReadinessRecoveryGroupWithName retrieves all route53recoveryreadiness.RecoveryGroup items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetRoute53RecoveryReadinessRecoveryGroupWithName(name string) (*route53recoveryreadiness.RecoveryGroup, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *route53recoveryreadiness.RecoveryGroup:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type route53recoveryreadiness.RecoveryGroup not found", name)
+}
+
+// GetAllRoute53RecoveryReadinessResourceSetResources retrieves all route53recoveryreadiness.ResourceSet items from an AWS CloudFormation template
+func (t *Template) GetAllRoute53RecoveryReadinessResourceSetResources() map[string]*route53recoveryreadiness.ResourceSet {
+	results := map[string]*route53recoveryreadiness.ResourceSet{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *route53recoveryreadiness.ResourceSet:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetRoute53RecoveryReadinessResourceSetWithName retrieves all route53recoveryreadiness.ResourceSet items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetRoute53RecoveryReadinessResourceSetWithName(name string) (*route53recoveryreadiness.ResourceSet, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *route53recoveryreadiness.ResourceSet:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type route53recoveryreadiness.ResourceSet not found", name)
+}
+
 // GetAllRoute53ResolverFirewallDomainListResources retrieves all route53resolver.FirewallDomainList items from an AWS CloudFormation template
 func (t *Template) GetAllRoute53ResolverFirewallDomainListResources() map[string]*route53resolver.FirewallDomainList {
 	results := map[string]*route53resolver.FirewallDomainList{}
@@ -17938,6 +18349,30 @@ func (t *Template) GetServerlessFunctionWithName(name string) (*serverless.Funct
 	return nil, fmt.Errorf("resource %q of type serverless.Function not found", name)
 }
 
+// GetAllServerlessHttpApiResources retrieves all serverless.HttpApi items from an AWS CloudFormation template
+func (t *Template) GetAllServerlessHttpApiResources() map[string]*serverless.HttpApi {
+	results := map[string]*serverless.HttpApi{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *serverless.HttpApi:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetServerlessHttpApiWithName retrieves all serverless.HttpApi items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetServerlessHttpApiWithName(name string) (*serverless.HttpApi, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *serverless.HttpApi:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type serverless.HttpApi not found", name)
+}
+
 // GetAllServerlessLayerVersionResources retrieves all serverless.LayerVersion items from an AWS CloudFormation template
 func (t *Template) GetAllServerlessLayerVersionResources() map[string]*serverless.LayerVersion {
 	results := map[string]*serverless.LayerVersion{}
@@ -19496,4 +19931,68 @@ func (t *Template) GetASKSkillWithName(name string) (*ask.Skill, error) {
 		}
 	}
 	return nil, fmt.Errorf("resource %q of type ask.Skill not found", name)
+}
+
+// GetServerlessGlobalApiretrieves the template's Globals.Api items from an AWS SAM template.
+// Returns an error if not found.
+func (t *Template) GetServerlessGlobalApi() (*global.Api, error) {
+	globals := t.Globals
+	if globals == nil {
+		return nil, fmt.Errorf("globals not found")
+	}
+	if untyped, ok := globals["Api"]; ok {
+		switch resource := untyped.(type) {
+		case *global.Api:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource of type global.Api not found")
+}
+
+// GetServerlessGlobalFunctionretrieves the template's Globals.Function items from an AWS SAM template.
+// Returns an error if not found.
+func (t *Template) GetServerlessGlobalFunction() (*global.Function, error) {
+	globals := t.Globals
+	if globals == nil {
+		return nil, fmt.Errorf("globals not found")
+	}
+	if untyped, ok := globals["Function"]; ok {
+		switch resource := untyped.(type) {
+		case *global.Function:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource of type global.Function not found")
+}
+
+// GetServerlessGlobalHttpApiretrieves the template's Globals.HttpApi items from an AWS SAM template.
+// Returns an error if not found.
+func (t *Template) GetServerlessGlobalHttpApi() (*global.HttpApi, error) {
+	globals := t.Globals
+	if globals == nil {
+		return nil, fmt.Errorf("globals not found")
+	}
+	if untyped, ok := globals["HttpApi"]; ok {
+		switch resource := untyped.(type) {
+		case *global.HttpApi:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource of type global.HttpApi not found")
+}
+
+// GetServerlessGlobalSimpleTableretrieves the template's Globals.SimpleTable items from an AWS SAM template.
+// Returns an error if not found.
+func (t *Template) GetServerlessGlobalSimpleTable() (*global.SimpleTable, error) {
+	globals := t.Globals
+	if globals == nil {
+		return nil, fmt.Errorf("globals not found")
+	}
+	if untyped, ok := globals["SimpleTable"]; ok {
+		switch resource := untyped.(type) {
+		case *global.SimpleTable:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource of type global.SimpleTable not found")
 }

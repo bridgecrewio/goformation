@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // ContainerRecipe AWS CloudFormation Resource (AWS::ImageBuilder::ContainerRecipe)
@@ -45,7 +45,7 @@ type ContainerRecipe struct {
 	// InstanceConfiguration AWS CloudFormation Property
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-containerrecipe.html#cfn-imagebuilder-containerrecipe-instanceconfiguration
-	InstanceConfiguration interface{} `json:"InstanceConfiguration,omitempty"`
+	InstanceConfiguration *ContainerRecipe_InstanceConfiguration `json:"InstanceConfiguration,omitempty"`
 
 	// KmsKeyId AWS CloudFormation Property
 	// Required: false

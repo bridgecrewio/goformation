@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // UserPoolClient AWS CloudFormation Resource (AWS::Cognito::UserPoolClient)
@@ -51,6 +51,11 @@ type UserPoolClient struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html#cfn-cognito-userpoolclient-defaultredirecturi
 	DefaultRedirectURI string `json:"DefaultRedirectURI,omitempty"`
+
+	// EnableTokenRevocation AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html#cfn-cognito-userpoolclient-enabletokenrevocation
+	EnableTokenRevocation bool `json:"EnableTokenRevocation,omitempty"`
 
 	// ExplicitAuthFlows AWS CloudFormation Property
 	// Required: false

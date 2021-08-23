@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
-	"github.com/awslabs/goformation/v4/cloudformation/tags"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/tags"
 )
 
 // Key AWS CloudFormation Resource (AWS::KMS::Key)
@@ -42,6 +42,11 @@ type Key struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-keyusage
 	KeyUsage string `json:"KeyUsage,omitempty"`
+
+	// MultiRegion AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-multiregion
+	MultiRegion bool `json:"MultiRegion,omitempty"`
 
 	// PendingWindowInDays AWS CloudFormation Property
 	// Required: false

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // VPCCidrBlock AWS CloudFormation Resource (AWS::EC2::VPCCidrBlock)
@@ -21,6 +21,16 @@ type VPCCidrBlock struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html#cfn-ec2-vpccidrblock-cidrblock
 	CidrBlock string `json:"CidrBlock,omitempty"`
+
+	// Ipv6CidrBlock AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html#cfn-ec2-vpccidrblock-ipv6cidrblock
+	Ipv6CidrBlock string `json:"Ipv6CidrBlock,omitempty"`
+
+	// Ipv6Pool AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html#cfn-ec2-vpccidrblock-ipv6pool
+	Ipv6Pool string `json:"Ipv6Pool,omitempty"`
 
 	// VpcId AWS CloudFormation Property
 	// Required: true

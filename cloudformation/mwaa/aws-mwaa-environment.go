@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // Environment AWS CloudFormation Resource (AWS::MWAA::Environment)
@@ -86,6 +86,11 @@ type Environment struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html#cfn-mwaa-environment-requirementss3path
 	RequirementsS3Path string `json:"RequirementsS3Path,omitempty"`
+
+	// Schedulers AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html#cfn-mwaa-environment-schedulers
+	Schedulers int `json:"Schedulers,omitempty"`
 
 	// SourceBucketArn AWS CloudFormation Property
 	// Required: false

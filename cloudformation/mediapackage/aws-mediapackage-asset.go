@@ -5,18 +5,13 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
-	"github.com/awslabs/goformation/v4/cloudformation/tags"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/tags"
 )
 
 // Asset AWS CloudFormation Resource (AWS::MediaPackage::Asset)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-asset.html
 type Asset struct {
-
-	// EgressEndpoints AWS CloudFormation Property
-	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-asset.html#cfn-mediapackage-asset-egressendpoints
-	EgressEndpoints []Asset_EgressEndpoint `json:"EgressEndpoints,omitempty"`
 
 	// Id AWS CloudFormation Property
 	// Required: true

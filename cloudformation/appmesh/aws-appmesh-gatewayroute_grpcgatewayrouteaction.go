@@ -1,12 +1,17 @@
 package appmesh
 
 import (
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // GatewayRoute_GrpcGatewayRouteAction AWS CloudFormation Resource (AWS::AppMesh::GatewayRoute.GrpcGatewayRouteAction)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayrouteaction.html
 type GatewayRoute_GrpcGatewayRouteAction struct {
+
+	// Rewrite AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-grpcgatewayrouteaction.html#cfn-appmesh-gatewayroute-grpcgatewayrouteaction-rewrite
+	Rewrite *GatewayRoute_GrpcGatewayRouteRewrite `json:"Rewrite,omitempty"`
 
 	// Target AWS CloudFormation Property
 	// Required: true

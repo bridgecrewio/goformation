@@ -5,12 +5,17 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // EC2Fleet AWS CloudFormation Resource (AWS::EC2::EC2Fleet)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html
 type EC2Fleet struct {
+
+	// Context AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-context
+	Context string `json:"Context,omitempty"`
 
 	// ExcessCapacityTerminationPolicy AWS CloudFormation Property
 	// Required: false

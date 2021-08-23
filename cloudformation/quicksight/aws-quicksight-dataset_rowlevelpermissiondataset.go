@@ -1,7 +1,7 @@
 package quicksight
 
 import (
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // DataSet_RowLevelPermissionDataSet AWS CloudFormation Resource (AWS::QuickSight::DataSet.RowLevelPermissionDataSet)
@@ -12,6 +12,11 @@ type DataSet_RowLevelPermissionDataSet struct {
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissiondataset.html#cfn-quicksight-dataset-rowlevelpermissiondataset-arn
 	Arn string `json:"Arn,omitempty"`
+
+	// FormatVersion AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissiondataset.html#cfn-quicksight-dataset-rowlevelpermissiondataset-formatversion
+	FormatVersion string `json:"FormatVersion,omitempty"`
 
 	// Namespace AWS CloudFormation Property
 	// Required: false

@@ -1,22 +1,22 @@
 package glue
 
 import (
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // Partition_SchemaReference AWS CloudFormation Resource (AWS::Glue::Partition.SchemaReference)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemareference.html
 type Partition_SchemaReference struct {
 
-	// SchameVersionId AWS CloudFormation Property
-	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemareference.html#cfn-glue-partition-schemareference-schameversionid
-	SchameVersionId string `json:"SchameVersionId,omitempty"`
-
 	// SchemaId AWS CloudFormation Property
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemareference.html#cfn-glue-partition-schemareference-schemaid
 	SchemaId *Partition_SchemaId `json:"SchemaId,omitempty"`
+
+	// SchemaVersionId AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemareference.html#cfn-glue-partition-schemareference-schemaversionid
+	SchemaVersionId string `json:"SchemaVersionId,omitempty"`
 
 	// SchemaVersionNumber AWS CloudFormation Property
 	// Required: false

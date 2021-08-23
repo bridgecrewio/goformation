@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
-	"github.com/awslabs/goformation/v4/cloudformation/tags"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/tags"
 )
 
 // Server AWS CloudFormation Resource (AWS::Transfer::Server)
@@ -47,6 +47,11 @@ type Server struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-server.html#cfn-transfer-server-loggingrole
 	LoggingRole string `json:"LoggingRole,omitempty"`
+
+	// ProtocolDetails AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-server.html#cfn-transfer-server-protocoldetails
+	ProtocolDetails *Server_ProtocolDetails `json:"ProtocolDetails,omitempty"`
 
 	// Protocols AWS CloudFormation Property
 	// Required: false

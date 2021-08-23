@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // DeploymentGroup AWS CloudFormation Resource (AWS::CodeDeploy::DeploymentGroup)
@@ -32,6 +32,11 @@ type DeploymentGroup struct {
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-autoscalinggroups
 	AutoScalingGroups []string `json:"AutoScalingGroups,omitempty"`
 
+	// BlueGreenDeploymentConfiguration AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-bluegreendeploymentconfiguration
+	BlueGreenDeploymentConfiguration *DeploymentGroup_BlueGreenDeploymentConfiguration `json:"BlueGreenDeploymentConfiguration,omitempty"`
+
 	// Deployment AWS CloudFormation Property
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-deployment
@@ -51,6 +56,11 @@ type DeploymentGroup struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-deploymentstyle
 	DeploymentStyle *DeploymentGroup_DeploymentStyle `json:"DeploymentStyle,omitempty"`
+
+	// ECSServices AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-ecsservices
+	ECSServices []DeploymentGroup_ECSService `json:"ECSServices,omitempty"`
 
 	// Ec2TagFilters AWS CloudFormation Property
 	// Required: false

@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
-	"github.com/awslabs/goformation/v4/cloudformation/tags"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/tags"
 )
 
 // Table AWS CloudFormation Resource (AWS::Cassandra::Table)
@@ -22,6 +22,11 @@ type Table struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-table.html#cfn-cassandra-table-clusteringkeycolumns
 	ClusteringKeyColumns []Table_ClusteringKeyColumn `json:"ClusteringKeyColumns,omitempty"`
+
+	// EncryptionSpecification AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-table.html#cfn-cassandra-table-encryptionspecification
+	EncryptionSpecification *Table_EncryptionSpecification `json:"EncryptionSpecification,omitempty"`
 
 	// KeyspaceName AWS CloudFormation Property
 	// Required: true

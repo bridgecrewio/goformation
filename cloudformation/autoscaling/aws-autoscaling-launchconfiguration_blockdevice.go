@@ -1,7 +1,7 @@
 package autoscaling
 
 import (
-	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v5/cloudformation/policies"
 )
 
 // LaunchConfiguration_BlockDevice AWS CloudFormation Resource (AWS::AutoScaling::LaunchConfiguration.BlockDevice)
@@ -27,6 +27,11 @@ type LaunchConfiguration_BlockDevice struct {
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-template.html#cfn-as-launchconfig-blockdev-template-snapshotid
 	SnapshotId string `json:"SnapshotId,omitempty"`
+
+	// Throughput AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-template.html#cfn-as-launchconfig-blockdev-template-throughput
+	Throughput int `json:"Throughput,omitempty"`
 
 	// VolumeSize AWS CloudFormation Property
 	// Required: false
